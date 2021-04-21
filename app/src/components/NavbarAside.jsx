@@ -6,44 +6,46 @@ import { useState } from "react";
 const NavbarAside = () => {
   const [menuActive, setMenuActive] = useState(false)
 
-  const [links, setLinks ] = useState([
-    {name: "Home ", url: "/"},
-    {name: "channels" , url: "#"},
-    {name: "program", url:""}
+  const [links, setLinks] = useState([
+    { name: "Home ", url: "/" },
+    { name: "channels", url: "#" },
+    { name: "program", url: "" }
   ]);
 
   const renderLinks = () => {
     return links.map(link => (
-      <Link className={style} key={link.key} to={link.url}>{link.name}</Link>
+      <Link className={style} key={link.name} to={link.url}>{link.name}</Link>
+  
     ))
+    
   }
 
-  const handleClick = () =>{
+  const handleClick = () => {
     setMenuActive(!menuActive);
     console.log(menuActive);
   }
 
-  return(
+  return (
     <header>
-    <div className={style.container}>
-      <div className={`${style.leftMenu} ${menuActive ? style.openMenu : ''}`}>
-        <div className={`${style.hamburger} ${menuActive ? style.open : ''}`} 
-        onClick={handleClick}>
-        <span></span>
-        <span></span>
-        <span></span>
+      <div className={style.container}>
+        <div className={`${style.leftMenu} ${menuActive ? style.openMenu : ''}`}
+          >
+          <div className={`${style.hamburger} ${menuActive ? style.open : ''}`}
+            onClick={handleClick}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div className={style.imgWrapper}>
+            <img src={logo} alt={logo} className="logo-img" />
+          </div>
+          <nav className={style.menu}>
+            {renderLinks()}
+
+          </nav>
         </div>
-      <div className={style.imgWrapper}>
-        <img src={logo} alt={logo} className="logo-img"/>
       </div>
-      <nav className={style.menu}>
-        {renderLinks()}
-         
-    
-      </nav>
-    </div>
-   </div>
-  </header>
+    </header>
   )
 }
 export default NavbarAside;

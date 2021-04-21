@@ -1,0 +1,93 @@
+.wrapper {
+  border: 1px solid red;
+  margin-left: 275px;
+}
+
+.container{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.list {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  
+  margin-bottom: 50px 
+  
+}
+
+.listBtn {
+  width: 140px;
+  height: 30px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 2;
+  margin: 0;
+  cursor: pointer;
+  border-bottom: 2px solid #000;
+  
+}
+
+.active {
+  border-top: 2px solid #F51E38;
+  border-right: 2px solid #F51E38;
+  border-bottom: 2px solid transparent
+
+}
+
+.listContent{
+  border: 1px solid red;
+  background-image: url('../assets/bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 86vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.cardWrapper{
+  width: 100%;
+  position: relative;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+}
+
+/* scroll */
+
+html {
+  --scrollbarBG: #bdb6b6;
+  --thumbBG: #4c4c4cbd;
+}
+
+.listContent::-webkit-scrollbar {
+  width: 11px;
+}
+
+.listContent {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+.listContent::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+.listContent::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+
+/* ./scroll */
+
+.cboxtags{
+  list-style: none;
+  margin-bottom: 40px;
+}

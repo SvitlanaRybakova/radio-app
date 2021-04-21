@@ -1,11 +1,14 @@
 import style from "../styles/Navbar.module.css";
 
 const Navbar = () => {
-  return(
+  return (
     <div className={style.wrapper}>
-      <span>Navbar</span>  
-      <span>LOGIN</span>
-    
+      <div className={style.loginWrapper}>
+        <span>Hi, Sviltana</span>
+        <span style={{cursor: "pointer", fontSize: "1.8rem" }}><i className="fas fa-sign-in-alt"></i></span>
+      </div>
+
+
     </div>
   )
 }

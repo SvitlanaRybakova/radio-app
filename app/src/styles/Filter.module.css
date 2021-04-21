@@ -1,0 +1,35 @@
+.radioItem{
+  display: inline;
+
+}
+
+.labelItem{
+  display: inline-block;
+  background-color: rgba(255, 255, 255, .9);
+  border: 2px solid rgba(139, 139, 139, .3);
+  color: #1d1d1b;
+  border-radius: 25px;
+  white-space: nowrap;
+  margin: 3px 0px;
+  padding: 1px 15px;
+  min-width: 80px;
+  text-align: center;
+  transition: all .2s;
+}
+
+.labelItem {
+  cursor: pointer;
+}
+
+.inputItem[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.inputItem[type="checkbox"]:checked + .labelItem{
+
+  background-color: #ffc107;
+  color: #1d1d1b;
+  transition: all .2s;
+}
+

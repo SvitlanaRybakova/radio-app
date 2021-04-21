@@ -1,0 +1,86 @@
+.cardItem {
+  padding: 10px;
+  display: flex;
+  max-height: 200px;
+  /* border: 1px solid yellow; */
+  margin-bottom: 80px;
+  color: #ffffff;
+  align-items: center;
+}
+
+.imgCardWrapper {
+  padding: 10px;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+.blackout{
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+ .itemImg {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  
+}
+
+
+
+.content {
+  width: 100%;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.cardTitle {
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-right: 40px;
+}
+
+.tagline {
+  margin-top: 20px;
+  font-family: 'Hind Madurai', sans-serif;
+  letter-spacing: 0.013rem;
+}
+
+.channeltype {
+  background-color: rgba(255, 255, 255, .9);
+  border: 2px solid rgba(139, 139, 139, .3);
+  color: #1d1d1b;
+  font-size: 0.9rem;
+  border-radius: 25px;
+  padding: 4px 10px;
+}
+
+.cardNav {
+  cursor: pointer;
+  /* padding: 20px; */
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  /* border: 1px solid red; */
+}

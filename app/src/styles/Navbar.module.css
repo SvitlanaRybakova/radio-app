@@ -1,4 +1,20 @@
-.wrapper{
-  border: 1px solid red;
-  height: 40px;
+.wrapper {
+  margin-left: 275px;
+}
+
+.loginWrapper{
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffc107;
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.loginWrapper span:nth-child(1){
+  padding-right: 40px;
 }
