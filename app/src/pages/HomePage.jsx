@@ -7,36 +7,54 @@ import Filter from "../components/Filter";
 
 
 const HomePage = (props) => {
+  const { channels, setChannels, getAllChannels } = useContext(ChannelsContext)
   const [isChannels, setIsChannels] = useState(true);
+  const [channeltype, setChanneltype ] = useState("All");
+
+ 
+  
+
+ 
+
+
   const [channelCategory, setChannelCategory] = useState([
-    { id: 1, name: "All", isChecked: false },
-    { id: 2, name: "Rikskanal", isChecked: false },
-    { id: 3, name: "Lokal kanal", isChecked: false },
-    { id: 4, name: "Minoritet och språk", isChecked: false },
-    { id: 5, name: "Fler kanaler", isChecked: false },
-    { id: 6, name: "Extrakanaler", isChecked: false },
+    { id: 1, name: "All" },
+    { id: 2, name: "Rikskanal" },
+    { id: 3, name: "Lokal kanal" },
+    { id: 4, name: "Minoritet och språk" },
+    { id: 5, name: "Fler kanaler" },
+    { id: 6, name: "Extrakanaler" },
   ])
 
-  const { channels, setChannels } = useContext(ChannelsContext)
 
 
   useEffect(() => {
-    renderChannels();
-    console.log('channels', channels);
-  }, [channels])
+    render();
+  }, [channels, channeltype])
 
 
   const renderChannels = () => {
+   
     if (channels) {
-      return channels.map((channel) => (
-        <ListItemCard key={channel.id} channelItem={channel} />
-      ))
+
+      let filteredChannels
+      if (channeltype != "All") {
+        filteredChannels = channels.filter((channel) => {
+          return (channel.channeltype === channeltype)
+        })
+      } else {
+        // Go for All
+        filteredChannels = channels
+      }
+
+       return filteredChannels.map((channel) => (
+         <ListItemCard key={channel.id} channelItem={channel} />
+       ))
     }
+   
     else {
       return <Spinner />
     }
-
-
   }
 
   const renderPrograms = () => {
@@ -45,55 +63,51 @@ const HomePage = (props) => {
     )
   }
 
-
-  const filterOnChange = (e) => {
-    const value = e.target.value;
-    console.log(value);
-    if (channels) {
-      const result = channels.filter((channel) => {
-        return (channel.channeltype === value)
-      })
-  
-      setChannels(result)
-    }
-    else {
-     
-      return <Spinner />
-    }
+  const render = () => {
+    return isChannels ? renderChannels() : renderPrograms()
   }
 
-    return (
 
-      <div className={style.wrapper}>
-        <div className={style.container}>
-          <section className={style.list}>
-            <div className={style.listBtn, style.active}
-              onClick={() => setIsChannels(true)}>Kanaler
+  const handleToggle = (e) => {
+    e.preventDefault();
+    setChanneltype(e.target.value);
+  }
+
+  return (
+
+    <div className={style.wrapper}>
+      <div className={style.container}>
+        <section className={style.list}>
+          <div className={style.listBtn, style.active}
+            onClick={() => setIsChannels(true)}>Kanaler
           </div>
-            <div className={style.listBtn, style.active}
-              onClick={() => setIsChannels(false)}
-            >
-              Program</div>
-          </section>
+          <div className={style.listBtn, style.active}
+            onClick={() => setIsChannels(false)}
+          >
+            Program</div>
+        </section>
 
-          {/* filter */}
-          <ul className={style.cboxtags}>
-            {channelCategory.map(category => (
-              <Filter key={category.id} channelCategory={category}
-                setChannelCategory={setChannelCategory}
-                filterOnChange={filterOnChange} />
-            ))}
-          </ul>
-          {/* filter end */}
-          
-          <div className={style.listContent}>
-            <div className={style.cardWrapper}>
-              {isChannels ? renderChannels() :  renderChannels()}
-            </div>
+        {/* filter */}
+        <form action="">
+        <ul className={style.cboxtags}>
+          {channelCategory.map(category => (
+            <Filter key={category.id} value={category}
+              handleToggle={handleToggle}
+
+            />
+          ))}
+        </ul>
+        </form>
+        {/* filter end */}
+
+        <div className={style.listContent}>
+          <div className={style.cardWrapper}>
+            { render() }
           </div>
         </div>
-
       </div>
-    )
-  }
-  export default HomePage;
+
+    </div>
+  )
+}
+export default HomePage;

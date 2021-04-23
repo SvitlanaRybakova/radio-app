@@ -22,7 +22,6 @@ const NavbarAside = () => {
 
   const handleClick = () => {
     setMenuActive(!menuActive);
-    console.log(menuActive);
   }
 
   return (

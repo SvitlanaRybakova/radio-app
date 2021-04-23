@@ -1,34 +1,16 @@
-import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import  useAudio  from "../hooks/useAudio";
 
 import styles from "../styles/ListItemCard.module.css";
 
 const ListItemCard = ({ channelItem }) => {
+  // custom hook for playing audio
+  const { toggle, playing} = useAudio(channelItem.liveaudio.url);
+
   const history = useHistory();
-
-  const liveaudio = channelItem.liveaudio;
-
-  const [audio] = useState(new Audio(liveaudio.url));
-  const [playing, setPlaying] = useState(false);
-
-  const toggle = () => setPlaying(!playing);
-
-  useEffect(() => {
-    playing ? audio.play() : audio.pause();
-  }, [playing]
-
-  );
-
-  // useEffect(() => {
-  //   audio.addEventListener('ended', () => setPlaying(false));
-  //   return () => {
-  //     audio.removeEventListener('ended', () => setPlaying(false));
-  //   };
-  // }, []);
 
   const handleClick = (channelId) => {
     history.push(`/channels/${channelId}`);
-    
   };
 
   return (

@@ -1,18 +1,21 @@
 import styles from "../styles/Filter.module.css";
 
-const Filter = ({channelCategory,  filterOnChange}) => {
+const Filter = ({value, handleToggle}) => {
 
   return (
     <>
       <li className={styles.radioItem}>
         <input
           className={styles.inputItem}
-          type="checkbox" id={channelCategory.id} value={channelCategory.name} 
-          onChange={(e)=>filterOnChange(e)}
+          type="radio" 
+          name="category"
+          id={value.id} 
+          value={value.name} 
+          onChange={(e)=> handleToggle(e)}
           />
-          <label className={styles.labelItem} htmlFor={channelCategory.id}
+          <label className={styles.labelItem} htmlFor={value.id}
           >
-            {channelCategory.name}</label>
+            {value.name}</label>
       </li>
     </>
   )

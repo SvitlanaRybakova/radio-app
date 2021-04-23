@@ -1,0 +1,33 @@
+.wrapper {
+  border: 1px solid red;
+  margin-left: 275px;
+}
+
+.container{
+  width: 90%;
+  margin: 0 auto;
+}
+.descriptionWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.imgWrapper{
+  flex-basis: 25%;
+  margin: 10px  30px 10px 0;
+  width: 50px;
+  height: 50px;
+}
+
+.description{
+
+}
+.channelUrl{
+  color: black;
+}
+
+.audio{
+  border: 1px red solid;
+  width: 100%;
+  height: 400px;
+}
