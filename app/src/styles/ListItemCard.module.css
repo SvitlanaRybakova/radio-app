@@ -1,33 +1,50 @@
-.cardItem {
-  padding: 10px;
-  display: flex;
-  max-height: 200px;
-  /* border: 1px solid yellow; */
-  margin-bottom: 80px;
+.cardWrapper {
+  padding: 30px 30px 40px 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: brown 1px solid;
+}
+
+.cardItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardWrapper:hover {
+  background: #c1c1c173;
+  transition: 0.5s;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
   align-items: center;
 }
 
 .imgCardWrapper {
   padding: 10px;
   height: 80px;
-  width: 80px;
-  border-radius: 50%;
   position: relative;
   cursor: pointer;
+  flex-basis: calc((100%/3) - 2rem);
 }
 
-.blackout{
+.blackout {
   position: absolute;
   height: 80px;
   width: 80px;
   border-radius: 50%;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #00000024;
   z-index: 1;
 }
- .itemImg {
+
+.itemImg {
   position: absolute;
   height: 80px;
   width: 80px;
@@ -35,34 +52,35 @@
   left: 0;
   top: 0;
   z-index: 0;
-  
 }
 
-
-
-.content {
-  width: 100%;
-  padding: 20px;
-  cursor: pointer;
+.blackout:hover {
+  border: 5px solid #ffc107;
+  transition: 0.5s;
 }
 
-.cardTitle {
-  display: flex;
-  width: 50%;
-  margin: 0 auto;
-  justify-content: space-between;
+.cardDetails {
+  flex-basis: calc((100%/2) - 2rem);
 }
 
 .title {
   font-size: 1.4rem;
   font-weight: bold;
   margin-right: 40px;
+  margin-bottom: 30px;
 }
 
-.tagline {
-  margin-top: 20px;
-  font-family: 'Hind Madurai', sans-serif;
-  letter-spacing: 0.013rem;
+.date {
+  font-weight: bold;
+}
+
+.description {
+  margin-top: 10px;
+}
+
+.channeltypeWrapper {
+  flex-basis: calc((100%/3) - 2rem);
+  text-align: right;
 }
 
 .channeltype {
@@ -72,15 +90,5 @@
   font-size: 0.9rem;
   border-radius: 25px;
   padding: 4px 10px;
-}
-
-.cardNav {
-  cursor: pointer;
-  /* padding: 20px; */
-  margin: 0 auto;
-  margin-top: 40px;
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  /* border: 1px solid red; */
+  text-align: right;
 }

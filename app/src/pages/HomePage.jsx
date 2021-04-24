@@ -1,44 +1,62 @@
 import { useState, useContext, useEffect } from "react";
 import { ChannelsContext } from "../contexts/ChannelsProvider";
+import { ProgramsContext } from "../contexts/ProgramsProvider";
 import style from "../styles/HomePage.module.css";
 import Spinner from "../components/Spinner";
 import ListItemCard from "../components/ListItemCard";
 import Filter from "../components/Filter";
+import PlayerBtn from "../components/PlayerBtn";
 
 
-const HomePage = (props) => {
-  const { channels, setChannels, getAllChannels } = useContext(ChannelsContext)
+
+const HomePage = () => {
+
+
+  const { channels, channelCategories } = useContext(ChannelsContext)
+  const { programCategories, getProgramsByCategory, getAllPrograms } = useContext(ProgramsContext);
+  const [idForAudio, setIdForAudio] = useState();
   const [isChannels, setIsChannels] = useState(true);
-  const [channeltype, setChanneltype ] = useState("All");
+  const [channeltype, setChanneltype] = useState("All");
+  const [programType, setProgramType] = useState(0);
+  const [programs, setPrograms] = useState(null)
 
- 
-  
-
- 
-
-
-  const [channelCategory, setChannelCategory] = useState([
-    { id: 1, name: "All" },
-    { id: 2, name: "Rikskanal" },
-    { id: 3, name: "Lokal kanal" },
-    { id: 4, name: "Minoritet och språk" },
-    { id: 5, name: "Fler kanaler" },
-    { id: 6, name: "Extrakanaler" },
-  ])
-
+  useEffect(() => {
+    if (!isChannels) {
+      gettingPrograms(programType);
+      console.log(programType);
+    }
+  }, [isChannels, programType])
 
 
   useEffect(() => {
     render();
-  }, [channels, channeltype])
+
+  }, [])
+
+
+  const gettingPrograms = async (programType) => {
+    let response;
+    if (programType == 0) {
+      response = await getAllPrograms()
+    } else {
+      response = await getProgramsByCategory(programType);
+    }
+    setPrograms(response);
+
+  }
+
+  useEffect(() => {
+    console.log(idForAudio);
+
+  }, [idForAudio])
 
 
   const renderChannels = () => {
-   
-    if (channels) {
 
+    if (channels) {
       let filteredChannels
-      if (channeltype != "All") {
+
+      if (channeltype !== "All") {
         filteredChannels = channels.filter((channel) => {
           return (channel.channeltype === channeltype)
         })
@@ -47,20 +65,41 @@ const HomePage = (props) => {
         filteredChannels = channels
       }
 
-       return filteredChannels.map((channel) => (
-         <ListItemCard key={channel.id} channelItem={channel} />
-       ))
+      return filteredChannels.map((channel) => (
+        <ListItemCard key={channel.id} channelItem={channel}
+
+          id={channel.id}
+          image={channel.image}
+          name={channel.name}
+          channeltype={channel.channeltype}
+          url={channel.liveaudio.url}
+          setIdForAudio={setIdForAudio} />
+      ))
     }
-   
+
     else {
       return <Spinner />
     }
   }
 
   const renderPrograms = () => {
-    return (
-      <h1>List of programs</h1>
-    )
+
+    if (programs) {
+
+      return programs.map((program) => (
+        <ListItemCard key={program.id} channelItem={program}
+          id={program.id}
+          image={program.programimage}
+          name={program.name}
+          description={program.description}
+
+        />
+      ))
+
+    } else {
+      <Spinner />
+    }
+
   }
 
   const render = () => {
@@ -68,9 +107,14 @@ const HomePage = (props) => {
   }
 
 
+
   const handleToggle = (e) => {
     e.preventDefault();
-    setChanneltype(e.target.value);
+    if (isChannels) {
+      setChanneltype(e.target.value);
+    } else {
+      setProgramType(e.target.id);
+    }
   }
 
   return (
@@ -89,24 +133,39 @@ const HomePage = (props) => {
 
         {/* filter */}
         <form action="">
-        <ul className={style.cboxtags}>
-          {channelCategory.map(category => (
-            <Filter key={category.id} value={category}
-              handleToggle={handleToggle}
+          <ul className={style.cboxtags}>
 
-            />
-          ))}
-        </ul>
+            {
+              isChannels ?
+
+                channelCategories.map(category => (
+                  <Filter key={category.id} value={category}
+                    handleToggle={handleToggle}
+                  />
+                ))
+
+                :
+
+                programCategories.map(category => (
+                  <Filter key={category.id} value={category}
+                    handleToggle={handleToggle}
+                  />
+                ))
+            }
+
+          </ul>
         </form>
         {/* filter end */}
 
         <div className={style.listContent}>
           <div className={style.cardWrapper}>
-            { render() }
+            {render()}
           </div>
-        </div>
-      </div>
 
+        </div>
+
+      </div>
+      <PlayerBtn src={idForAudio} />
     </div>
   )
 }

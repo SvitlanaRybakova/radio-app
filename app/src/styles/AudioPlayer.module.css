@@ -1,0 +1,21 @@
+.footerFix {
+  width: 90%;
+  margin: 0 auto;
+  height: 80px;
+  background-color: #1d1d1b;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  bottom: 0;
+  z-index: 999;
+  color: #fff;
+  right: 5%;
+  position: absolute;
+}
+
+
+
+
+
+

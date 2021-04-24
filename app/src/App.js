@@ -22,6 +22,7 @@ function App() {
 
           <Route exact path="/" component={HomePage} />
           <Route exact path="/channels/:channelId" component={ChannelPage}/>
+        
           </ProgramsProvider>
         </ChannelsProvider>
       </BrowserRouter>

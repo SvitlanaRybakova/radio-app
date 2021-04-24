@@ -1,11 +1,22 @@
 import { useHistory } from "react-router-dom";
-import  useAudio  from "../hooks/useAudio";
+
 
 import styles from "../styles/ListItemCard.module.css";
 
-const ListItemCard = ({ channelItem }) => {
-  // custom hook for playing audio
-  const { toggle, playing} = useAudio(channelItem.liveaudio.url);
+const ListItemCard = ({ channelItem, id,
+  image,
+  name,
+  channeltype,
+  setIdForAudio,
+  url,
+  startDate,
+  endDate,
+  subtitle,
+  description,
+  
+}) => {
+
+  // console.log(channelItem);
 
   const history = useHistory();
 
@@ -13,36 +24,63 @@ const ListItemCard = ({ channelItem }) => {
     history.push(`/channels/${channelId}`);
   };
 
+  const playRadio = (e, url) => {
+    e.stopPropagation();
+    setIdForAudio(url);
+  }
+
   return (
     <>
-      <div className={styles.cardItem}>
+      <div className={styles.cardWrapper}
+        onClick={() => handleClick(id)}>
 
-        <div className={styles.imgCardWrapper}
-          onClick={toggle}>
-          {playing ?
-            <i style={{ fontSize: "50px", left: "19%", top: "19%", position: "absolute", zIndex: "1", color: "#ffc107", zIndex: "2" }}
-              className="far fa-pause-circle"></i>
-            :
-            <i style={{ fontSize: "50px", left: "19%", top: "19%", position: "absolute", zIndex: "1", color: "#ffc107", zIndex: "2" }}
-              className="far fa-play-circle"></i>
-          }
-          <div className={styles.blackout}></div>
-          <img className={styles.itemImg} src={channelItem.image} alt={channelItem.name} />
-        </div>
+        <div className={styles.cardItem}>
+          <div className={styles.container}>
+            {/* image */}
+            <div className={styles.imgCardWrapper}
+              onClick={url ? (e) => playRadio(e, url) :
+                (e) => { e.stopPropagation() }}
+            >
+              <div className={styles.blackout}></div>
+              <img className={styles.itemImg} src={image ? image : "NO IMAGE"} alt={name} />
+            </div>
+            {/* end image */}
 
-        <div className={styles.content}
-          onClick={() => handleClick(channelItem.id)}
-        >
-          <div className={styles.cardTitle}>
-            <p className={styles.title}>{channelItem.name}</p>
-            <span className={styles.channeltype}>{channelItem.channeltype}</span>
+            <div className={styles.cardDetails}>
+              <p className={styles.title}>{name}</p>
+              {/* optional */}
+              {(startDate || endDate) ?
+                <div className={styles.detailsOptional}>
+                  <span className={styles.date}>{startDate}</span>
+                  <span className={styles.date} >-</span>
+                  <span className={styles.date}>{endDate}</span>
+                  <div className={styles.description}>
+                    <p>{subtitle}</p>
+                    <p>{description}</p>
+                  </div>
+                </div>
+                : ""
+              }
+              {description ?
+                <div className={styles.detailsOptional}>
+                  <p>{description}</p>
+                </div>
+                :
+                ""
+              }
+            </div>
+
+            {/* type or heart */}
+            <div className={styles.channeltypeWrapper}>
+              {channeltype ?
+                <span className={styles.channeltype}>{channeltype}</span>
+                :
+                <i style={{ fontSize: "1.5rem" }}
+                  className="far fa-heart"></i>}
+            </div>
+            {/* end type or heart */}
           </div>
-          <p className={styles.tagline}>{channelItem.tagline}</p>
-          <div className={styles.cardNav}>
-            <span>  Se tablå</span>
-            <i style={{ fontSize: "23px", marginLeft: "10px" }}
-              className="far fa-calendar-alt"></i>
-          </div>
+
         </div>
 
       </div>
@@ -50,3 +88,4 @@ const ListItemCard = ({ channelItem }) => {
   )
 }
 export default ListItemCard
+

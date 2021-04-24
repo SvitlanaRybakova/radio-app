@@ -1,18 +1,88 @@
-import { createContext } from "react";
+import { createContext, useState, useEffect } from "react";
+
 
 export const ProgramsContext = createContext();
 
 const ProgramsProvider = (props) => {
+  const [programsByChannel, setProgramsByChannel] = useState(null);
+  
+  
+  const [programCategories] = useState([
+    { "id": 0, "name": "All" },
+    { "id": 2, "name": "Barn 3 - 8 år" },
+    { "id": 132, "name": "Barn 9 - 13 år" },
+    { "id": 82, "name": "Dokumentär" },
+    { "id": 134, "name": "Drama" },
+    { "id": 135, "name": "Ekonomi" },
+    { "id": 133, "name": "Humor" },
+    { "id": 3, "name": "Kultur/Nöje" },
+    { "id": 14, "name": "Livsstil" },
+    { "id": 4, "name": "Livsåskådning" },
+    { "id": 5, "name": "Musik" },
+    { "id": 11, "name": "News in other languages" },
+    { "id": 68, "name": "Nyheter" },
+    { "id": 7, "name": "Samhälle" },
+    { "id": 10, "name": "Sport" },
+    { "id": 12, "name": "Vetenskap/Miljö" }
+  ])
 
+
+  const getAllPrograms = async () => {
+    let response = await fetch("/api/v1/programs");
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+    const programs = await response.json()
+    return programs.programs;
+  }
+
+  const getProgramsByCategory = async (categoryId) => {
+    let response = await fetch(`/api/v1/programs/programms-by-category/${categoryId}`)
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+    
+    let programs = await response.json();
+    console.log(programs);
+    return programs.programs;
+  }
   
 
-  // const getAllCategoriesName = async() => {
-  //   let smt = await fetch("/api/v1/programs/categories/:categoryId")
-  // }
-  const values={
-
+  const getProgramsByChannel = async (channelId) => {
+    let response = await fetch(`/api/v1/programs/programms-by-channel/${channelId}`);
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+    let programs = await response.json();
+    setProgramsByChannel(programs);
   }
-  return(
+
+  // const getAllCategoriesName = async () => {
+  //   let response = await fetch("/api/v1/programs/categories");
+  //   if (!response.ok) {
+  //     const message = `An error has occured: ${response.status}`;
+  //     throw new Error(message);
+  //   }
+  //   const categories = await response.json()
+  //   setCategories(categories);
+  
+  // }
+
+
+  const values = {
+    programCategories,
+    getAllPrograms,
+    getProgramsByCategory,
+    // programsByChannel,
+    // getProgramsByChannel,
+   
+   
+    
+  }
+  return (
     <ProgramsContext.Provider value={values}>
       {props.children}
     </ProgramsContext.Provider>

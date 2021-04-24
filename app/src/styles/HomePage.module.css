@@ -1,6 +1,7 @@
 .wrapper {
   border: 1px solid red;
   margin-left: 275px;
+  position: relative;
 }
 
 .container{

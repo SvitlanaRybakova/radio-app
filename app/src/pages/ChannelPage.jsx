@@ -4,12 +4,15 @@ import style from "../styles/ChannelPage.module.css";
 import { ChannelsContext } from "../contexts/ChannelsProvider";
 import useAudio from "../hooks/useAudio";
 import Spinner from "../components/Spinner"
-import ProgramCard from "../components/ProgramCard";
+
+import ListItemCard from "../components/ListItemCard";
+
 
 
 const ChannelPage = (props) => {
   // const history = useHistory();
-  const { singleChannel, getChannelById, getChannelSchedule, channelSchedule } = useContext(ChannelsContext)
+  const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, } = useContext(ChannelsContext)
+
   const { channelId } = props.match.params;
 
   // custom hook for playing audio
@@ -19,42 +22,54 @@ const ChannelPage = (props) => {
   useEffect(() => {
     getChannelById(channelId);
     getChannelSchedule(channelId);
-
   }, []);
-
 
   const render = () => {
     if (singleChannel && channelSchedule) {
-      
+
       return (
         <>
-          <h1>{singleChannel.name}</h1>
+          <h1 className={style.channelTitle}>{singleChannel.name}</h1>
           <div className={style.descriptionWrapper}>
             <div className={style.imgWrapper}>
               <img src={singleChannel.image} alt={singleChannel.name} />
             </div>
+
             <div className={style.description}>
               <p>{singleChannel.tagline}</p>
-              <a className={style.channelUrl} href={singleChannel.siteurl} >{singleChannel.siteurl}</a>
+              <div className={style.visitHomePage}>
+                <i style={{ display: "inline-block" }}
+                  className="far fa-hand-point-right"></i>
+                <a className={style.channelUrl} href={singleChannel.siteurl} >Besök webbsidan</a>
+              </div>
             </div>
-
           </div>
 
           <div className={style.audio} onClick={toggle}>
 
             {playing ?
-              <i style={{ fontSize: "50px", left: "19%", top: "19%", position: "absolute", zIndex: "1", color: "#ffc107", zIndex: "2" }}
+              <i style={{ fontSize: "50px", position: "absolute", color: "#ffc107", }}
                 className="far fa-pause-circle"></i>
               :
-              <i style={{ fontSize: "50px", left: "19%", top: "19%", position: "absolute", zIndex: "1", color: "#ffc107", zIndex: "2" }}
+              <i style={{ fontSize: "50px", position: "absolute", color: "#ffc107" }}
                 className="far fa-play-circle"></i>
             }
           </div>
 
           <section className={style.schedule}>
-          <h2 className={style.scheduleHeader}>Tablå{new Date().toLocaleDateString('sv-SE', { timeZone: 'UTC' })}</h2>
+            <h2 className={style.scheduleHeader}>Idag kan du lyssna på följande program:</h2>
+
+
             {channelSchedule.map(elem => (
-            <ProgramCard key={Date.now() + Math.random()} elem={elem}/>
+              <ListItemCard
+                key={(+new Date).toString(32) + Math.random().toString(32).substring(2, 9)}
+                elem={elem}
+                image={elem.imageurl}
+                name={elem.title}
+                startDate={new Date(elem.starttimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
+                endDate={new Date(elem.endtimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
+                subtitle={elem.subtitle}
+                description={elem.description} />
             ))}
 
           </section>
@@ -68,9 +83,16 @@ const ChannelPage = (props) => {
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
-        {render()}
+        <div className={style.listContent}>
+          <div className={style.cardWrapper}>
+            {/* <section className={style.list}> */}
+            {render()}
+            {/* </section> */}
+          </div>
+        </div>
       </div>
     </div>
+
   )
 }
 export default ChannelPage;
