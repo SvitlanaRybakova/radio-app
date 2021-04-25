@@ -12,19 +12,12 @@ const ChannelsProvider = (props) => {
     { id: 6, name: "Extrakanaler" },
   ])
 
-
-
-  const currentDate = new Date().toLocaleDateString('sv-SE'); 
-
- 
-
-
-  const [ channels, setChannels ] = useState(null);
+  const [channels, setChannels] = useState(null);
   const [singleChannel, setSingleChannel] = useState(null);
   const [channelSchedule, setChannelSchedule] = useState(null);
- 
 
-  
+
+
   useEffect(() => {
     getAllChannels();
   }, []);
@@ -39,32 +32,42 @@ const ChannelsProvider = (props) => {
     let channel = await fetch(`/api/v1/channels/${channelId}`);
     channel = await channel.json();
     setSingleChannel(channel.channel);
-    
+
   }
 
-  const getChannelSchedule = async(channelId) => {
-    let schedule = await fetch(`/api/v1/channels/schedule/${channelId}/${currentDate}`);
+  const getChannelSchedule = async (channelId, date) => {
+
+    if (!date) {
+      console.log(date);
+      date = new Date().toLocaleDateString('sv-SE');
+      
+    }
+   
+    console.log(date);
+
+    let schedule = await fetch(`/api/v1/channels/schedule/${channelId}/${date}`);
     if (!schedule.ok) {
       const message = `An error has occured: ${schedule.status}`;
       throw new Error(message);
     }
     schedule = await schedule.json();
     setChannelSchedule(schedule);
-  
+    return schedule;
   }
+ 
 
 
-
-  const values={
+  const values = {
     channelCategories,
     getAllChannels,
     channels,
     setChannels,
+    setChannelSchedule,
     singleChannel,
     getChannelById,
     getChannelSchedule,
     channelSchedule,
-   
+
   }
   return (
     <ChannelsContext.Provider value={values}>
