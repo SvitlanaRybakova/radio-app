@@ -67,7 +67,7 @@ const HomePage = () => {
 
       return filteredChannels.map((channel) => (
         <ListItemCard key={channel.id} channelItem={channel}
-
+          isChannel={true}
           id={channel.id}
           image={channel.image}
           name={channel.name}
@@ -122,17 +122,29 @@ const HomePage = () => {
     <div className={style.wrapper}>
       <div className={style.container}>
         <section className={style.list}>
-          <div className={style.listBtn, style.active}
+          <div className={
+            isChannels ?
+              `${style.listBtn}  ${style.active}`
+              :
+              `${style.listBtn}`
+          }
             onClick={() => setIsChannels(true)}>Kanaler
           </div>
-          <div className={style.listBtn, style.active}
+
+
+          <div className={
+            isChannels ?
+              `${style.listBtn}`
+              :
+              `${style.listBtn} ${style.active}`
+          }
             onClick={() => setIsChannels(false)}
           >
             Program</div>
         </section>
 
         {/* filter */}
-        <form action="">
+        <form className={style.filter} action="">
           <ul className={style.cboxtags}>
 
             {

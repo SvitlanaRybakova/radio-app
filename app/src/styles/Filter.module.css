@@ -1,3 +1,4 @@
+
 .radioItem{
   display: inline;
 
@@ -10,7 +11,7 @@
   color: #1d1d1b;
   border-radius: 25px;
   white-space: nowrap;
-  margin: 3px 0px;
+  margin: 4px 2px;
   padding: 1px 15px;
   min-width: 80px;
   text-align: center;
@@ -21,10 +22,10 @@
   cursor: pointer;
 }
 
-/* .inputItem[type="radio"] {
+.inputItem[type="radio"] {
   -webkit-appearance: none;
   appearance: none;
-} */
+}
 
 .inputItem[type="radio"]:checked+.labelItem{
 

@@ -1,0 +1,154 @@
+.wrapper {
+  margin-left: 275px;
+  position: relative;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.list {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  margin-bottom: 50px
+}
+
+.listContent {
+  border: 1px solid red;
+  background-image: url('../assets/bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 86vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+/* scroll */
+
+html {
+  --scrollbarBG: #bdb6b6;
+  --thumbBG: #4c4c4cbd;
+}
+
+.listContent::-webkit-scrollbar {
+  width: 11px;
+}
+
+.listContent {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+.listContent::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+.listContent::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+
+/* ./scroll */
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.visitHomePage {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.linkToSite {
+  margin-left: 10px;
+  margin-top: 0;
+  cursor: pointer;
+}
+
+.linkToSite:hover, .email:hover, .socialLink:hover {
+  color: #ffc107;
+  transition: 0.5s ease;
+}
+
+.imgWrapper {
+  width: 200px;
+  margin-right: 30px;
+}
+.titleWrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 85px;
+  margin-top: 50px;
+}
+
+.ProgramTitle {
+  color: #ffc107;
+  font-family: 'Hind Madurai', sans-serif;
+  text-align: center;
+  
+  display: inline-block;
+  flex-basis: 95%;
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.programDescription, .programSlug{
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  /* width: 90%; */
+  margin: 0 auto;
+  
+}
+
+
+.programEditor {
+  font-size: 1.2rem;
+  width: 90%;
+  margin: 0 auto;
+  text-align: right;
+  margin-top: 20px;
+}
+
+ 
+.broadcastinfo  {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.broadcastItem{
+  font-size: 1.3rem;
+  margin-bottom: 50px;
+}
+.email,.phone {
+  display: inline-block;
+  margin-top: 0;
+  margin-left: 10px;
+}
+.phoneWrapper{
+  margin-top: 20px;
+}
+.socialLink{
+  display: inline-block;
+  margin-left: 20px;
+}

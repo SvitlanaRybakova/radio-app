@@ -1,6 +1,6 @@
 import styles from "../styles/AudioPlayer.module.css";
 import useAudio from "../hooks/useAudio";
-import { useEffect } from "react";
+
 
 const PlayerBtn = ({src}) => {
   // custom hook for playing audio

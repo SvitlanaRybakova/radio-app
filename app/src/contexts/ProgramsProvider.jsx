@@ -1,12 +1,12 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 
 export const ProgramsContext = createContext();
 
 const ProgramsProvider = (props) => {
-  const [programsByChannel, setProgramsByChannel] = useState(null);
-  
-  
+  // const [programsByChannel, setProgramsByChannel] = useState(null);
+
+
   const [programCategories] = useState([
     { "id": 0, "name": "All" },
     { "id": 2, "name": "Barn 3 - 8 år" },
@@ -43,22 +43,35 @@ const ProgramsProvider = (props) => {
       const message = `An error has occured: ${response.status}`;
       throw new Error(message);
     }
-    
+
     let programs = await response.json();
     console.log(programs);
     return programs.programs;
   }
-  
 
-  const getProgramsByChannel = async (channelId) => {
-    let response = await fetch(`/api/v1/programs/programms-by-channel/${channelId}`);
+
+  const getProgramById = async (programId) => {
+    let response = await fetch(`/api/v1/programs/${programId}`);
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
       throw new Error(message);
     }
-    let programs = await response.json();
-    setProgramsByChannel(programs);
+
+    let program = await response.json();
+
+    return program.program
   }
+  getProgramById(35)
+
+  // const getProgramsByChannel = async (channelId) => {
+  //   let response = await fetch(`/api/v1/programs/programms-by-channel/${channelId}`);
+  //   if (!response.ok) {
+  //     const message = `An error has occured: ${response.status}`;
+  //     throw new Error(message);
+  //   }
+  //   let programs = await response.json();
+  //   setProgramsByChannel(programs);
+  // }
 
   // const getAllCategoriesName = async () => {
   //   let response = await fetch("/api/v1/programs/categories");
@@ -68,7 +81,7 @@ const ProgramsProvider = (props) => {
   //   }
   //   const categories = await response.json()
   //   setCategories(categories);
-  
+
   // }
 
 
@@ -76,11 +89,12 @@ const ProgramsProvider = (props) => {
     programCategories,
     getAllPrograms,
     getProgramsByCategory,
+    getProgramById,
     // programsByChannel,
     // getProgramsByChannel,
-   
-   
-    
+
+
+
   }
   return (
     <ProgramsContext.Provider value={values}>

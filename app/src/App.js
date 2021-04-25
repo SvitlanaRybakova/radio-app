@@ -5,6 +5,8 @@ import NavbarAside from "./components/NavbarAside.jsx";
 import ChannelsProvider from "./contexts/ChannelsProvider.jsx";
 import ChannelPage from "./pages/ChannelPage.jsx";
 import ProgramsProvider from "./contexts/ProgramsProvider.jsx";
+import ProgramPage from "./pages/ProgramPage.jsx";
+import SchedulePage from "./pages/SchedulePage.jsx";
 
 
 
@@ -16,13 +18,15 @@ function App() {
       <BrowserRouter>
         <ChannelsProvider>
           <ProgramsProvider>
-          <Navbar />
-          <NavbarAside />
+            <Navbar />
+            <NavbarAside />
 
 
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/channels/:channelId" component={ChannelPage}/>
-        
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/channels/:channelId" component={ChannelPage} />
+            <Route exact path="/programs/:programId" component={ProgramPage} />
+            <Route exact path="/all-schedule" component={SchedulePage} />
+
           </ProgramsProvider>
         </ChannelsProvider>
       </BrowserRouter>

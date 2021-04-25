@@ -3,7 +3,9 @@ import { useHistory } from "react-router-dom";
 
 import styles from "../styles/ListItemCard.module.css";
 
-const ListItemCard = ({ channelItem, id,
+const ListItemCard = ({
+  isChannel,
+  id,
   image,
   name,
   channeltype,
@@ -13,15 +15,22 @@ const ListItemCard = ({ channelItem, id,
   endDate,
   subtitle,
   description,
-  
+
 }) => {
 
-  // console.log(channelItem);
+
 
   const history = useHistory();
 
-  const handleClick = (channelId) => {
-    history.push(`/channels/${channelId}`);
+  const handleClick = (id) => {
+    if (isChannel) {
+      const channelId = id
+      history.push(`/channels/${channelId}`);
+    } else {
+      const programId = id;
+      history.push(`/programs/${programId}`);
+    }
+
   };
 
   const playRadio = (e, url) => {

@@ -1,11 +1,9 @@
 .wrapper {
-  
-  /* border: 1px solid red; */
   margin-left: 275px;
   position: relative;
 }
 
-.container {
+.container{
   width: 90%;
   margin: 0 auto;
 }
@@ -18,37 +16,11 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   
-}
-
-.listBtn{
-  box-sizing: border-box;
-  font-family: 'Hind Madurai', sans-serif;
-  text-transform: uppercase;
-  width: 240px;
-  height: 30px;
-  padding: 20px 30px;
-  font-size: 1.2rem;
-  line-height: 1px;
-  margin: 0;
-  cursor: pointer;
-  background: #ffffff;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
+  margin-bottom: 50px 
   
-
-.active {
-  background:  #1d1d1b;
-  color:#ffffff;
-  transition: ease 0.3s;
 }
+.listContent{
 
-
-
-
-
-.listContent {
-  /* border: 1px solid red; */
   background-image: url('../assets/bg.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -58,14 +30,8 @@
   overflow-x: hidden;
   position: relative;
   margin: 0 auto;
+  color: #ffffff;
 }
-
-.cardWrapper {
-  width: 100%;
-  position: relative;
-  /* background-color: rgba(0, 0, 0, 0.8); */
-}
-
 /* scroll */
 
 html {
@@ -93,14 +59,3 @@ html {
 }
 
 /* ./scroll */
-
-.cboxtags {
-  list-style: none;
-}
-.filter{
-  text-align: center;
-  background-color: #1d1d1b;
-  padding: 30px 20px;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 5px;
-}

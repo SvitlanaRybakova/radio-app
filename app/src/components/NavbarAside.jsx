@@ -6,10 +6,10 @@ import { useState } from "react";
 const NavbarAside = () => {
   const [menuActive, setMenuActive] = useState(false)
 
-  const [links, setLinks] = useState([
-    { name: "Home ", url: "/" },
-    { name: "channels", url: "#" },
-    { name: "program", url: "" }
+  const [links] = useState([
+    { name: "Kanaler & program ", url: "/" },
+    { name: "Tablå", url: "/all-schedule" },
+    { name: "Favoritlista", url: "" }
   ]);
 
   const renderLinks = () => {

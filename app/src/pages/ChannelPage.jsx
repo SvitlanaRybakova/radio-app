@@ -12,6 +12,7 @@ import ListItemCard from "../components/ListItemCard";
 const ChannelPage = (props) => {
   // const history = useHistory();
   const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, } = useContext(ChannelsContext)
+  
 
   const { channelId } = props.match.params;
 
@@ -26,7 +27,7 @@ const ChannelPage = (props) => {
 
   const render = () => {
     if (singleChannel && channelSchedule) {
-
+     
       return (
         <>
           <h1 className={style.channelTitle}>{singleChannel.name}</h1>
@@ -62,8 +63,10 @@ const ChannelPage = (props) => {
 
             {channelSchedule.map(elem => (
               <ListItemCard
-                key={(+new Date).toString(32) + Math.random().toString(32).substring(2, 9)}
+                key={(+new Date()).toString(32) + Math.random().toString(32).substring(2, 9)}
+                isChannel={false}
                 elem={elem}
+                id={elem.program.id}
                 image={elem.imageurl}
                 name={elem.title}
                 startDate={new Date(elem.starttimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
