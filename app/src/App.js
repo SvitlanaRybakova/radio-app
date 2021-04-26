@@ -8,6 +8,7 @@ import ProgramsProvider from "./contexts/ProgramsProvider.jsx";
 import ProgramPage from "./pages/ProgramPage.jsx";
 import SchedulePage from "./pages/SchedulePage.jsx";
 import UserProvider from "./contexts/UserProvider"
+import RegistrationPage from "./pages/RegistrationPage.jsx";
 
 
 
@@ -27,6 +28,7 @@ function App() {
               <Route exact path="/channels/:channelId" component={ChannelPage} />
               <Route exact path="/programs/:programId" component={ProgramPage} />
               <Route exact path="/all-schedule" component={SchedulePage} />
+              <Route exact path="/registration" component={RegistrationPage} />
 
             </ProgramsProvider>
           </ChannelsProvider>

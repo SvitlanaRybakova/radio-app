@@ -10,6 +10,7 @@ const UserProvider = (props) => {
     email: "",
     password: ""
   };
+
   const [usersReg, setUserRegistration] = useState(initialUsers);
   const [usersLogin, setUserLogin] = useState(initialUsers);
   const [isAuthorized, setAuthorized] = useState(null)
@@ -19,17 +20,18 @@ const UserProvider = (props) => {
     console.log('isAuthorized', isAuthorized);
   }, isAuthorized)
 
-  
+
   const handleRegistration = (e) => {
     const { name, value } = e.target;
     setUserRegistration({ ...usersReg, [name]: value })
+
 
   }
 
   const handleLogin = (e) => {
     const { name, value } = e.target;
     setUserLogin({ ...usersLogin, [name]: value })
-    
+
   }
 
   const checkAuthorization = async () => {
@@ -51,9 +53,10 @@ const UserProvider = (props) => {
     })
     if (!response.ok) {
       throw new Error(`error status ${response.status}`)
-    }else{
-      alert("Congrat, you have been registrated")
+    } else {
+      alert("Congrats, you have been registered")
     }
+    setUserRegistration(initialUsers)
     return await response.json();
 
   }
@@ -72,10 +75,10 @@ const UserProvider = (props) => {
       "mode": "cors"
     })
     if (!response.ok) {
-      alert("you must be autorized");
+      alert("You must be authorized");
     }
     else {
-      alert('hello, you are authorized');
+      alert('Hello, you are authorized');
       checkAuthorization();
       console.log(history);
       history.push("/");
@@ -83,7 +86,7 @@ const UserProvider = (props) => {
     return await response.json();
   }
 
-  const logout = async()=>{
+  const logout = async () => {
     let response = await fetch("/api/v1/users/logout");
     response = await response.json();
     await checkAuthorization()
@@ -100,7 +103,7 @@ const UserProvider = (props) => {
     logout,
     checkAuthorization,
     setUserLogin
-    
+
   }
   return (
     <UserContext.Provider value={values}>

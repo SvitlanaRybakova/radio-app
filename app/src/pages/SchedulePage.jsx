@@ -125,9 +125,9 @@ const SchedulePage = () => {
       <div className={style.container}>
         <div className={style.listContent}>
           <div className={style.cardWrapper}>
-            {/* <section className={style.list}> */}
+      
             {rederSchedule()}
-            {/* </section> */}
+       
           </div>
         </div>
       </div>
