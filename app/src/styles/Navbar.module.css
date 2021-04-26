@@ -4,7 +4,7 @@
 
 .loginWrapper{
   font-family: 'Hind Madurai', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #ffc107;
   padding: 20px;
@@ -13,8 +13,20 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+
 }
 
 .loginWrapper span:nth-child(1){
   padding-right: 40px;
+}
+
+.btn{
+  cursor: pointer;
+  font-size: 2rem;
+  /* background: red; */
+  
+  font-weight: bold;
+  color: #ffc107;
+  margin: 0;
 }

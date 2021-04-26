@@ -13,9 +13,6 @@ const RegistrationPage = () => {
   } = useContext(UserContext);
 
 
-  useState(() => {
-
-  })
 
   return (
     <>
