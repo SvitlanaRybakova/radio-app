@@ -17,7 +17,7 @@ const UserProvider = (props) => {
 
   useEffect(() => {
     checkAuthorization()
-    console.log('isAuthorized', isAuthorized);
+    
   }, isAuthorized)
 
 

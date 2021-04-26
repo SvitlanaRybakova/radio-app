@@ -5,16 +5,18 @@ import { UserContext } from "../contexts/UserProvider";
 import style from "../styles/Navbar.module.css";
 
 const Navbar = () => {
-  const { isAuthorized, logout, usersLogin } = useContext(UserContext);
+  const { isAuthorized, logout } = useContext(UserContext);
 
-  console.log('isAuthorized', isAuthorized);
+
+
+  // console.log('isAuthorized', isAuthorized.userName);
   return (
     <div className={style.wrapper}>
       <div className={style.loginWrapper}>
         {
           isAuthorized ?
             (<>
-              <span>Hi, Sviltana</span>
+              {isAuthorized.userName ? <span>Hi, {isAuthorized.userName}</span> : ""}
               <Link to={"/"}
                 className={style.btn}
                 onClick={logout}
