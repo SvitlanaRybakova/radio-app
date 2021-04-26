@@ -39,7 +39,7 @@ const ChannelPage = (props) => {
             <div className={style.description}>
               <p>{singleChannel.tagline}</p>
               <div className={style.visitHomePage}>
-                <i style={{ display: "inline-block" }}
+                <i style={{ color: "#ffc107" }}
                   className="far fa-hand-point-right"></i>
                 <a className={style.channelUrl} href={singleChannel.siteurl} >Besök webbsidan</a>
               </div>
