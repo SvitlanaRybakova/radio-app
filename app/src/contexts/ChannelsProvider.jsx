@@ -38,13 +38,9 @@ const ChannelsProvider = (props) => {
   const getChannelSchedule = async (channelId, date) => {
 
     if (!date) {
-      console.log(date);
       date = new Date().toLocaleDateString('sv-SE');
-      
     }
-   
-    console.log(date);
-
+  
     let schedule = await fetch(`/api/v1/channels/schedule/${channelId}/${date}`);
     if (!schedule.ok) {
       const message = `An error has occured: ${schedule.status}`;
