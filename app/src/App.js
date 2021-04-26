@@ -7,6 +7,7 @@ import ChannelPage from "./pages/ChannelPage.jsx";
 import ProgramsProvider from "./contexts/ProgramsProvider.jsx";
 import ProgramPage from "./pages/ProgramPage.jsx";
 import SchedulePage from "./pages/SchedulePage.jsx";
+import UserProvider from "./contexts/UserProvider"
 
 
 
@@ -16,19 +17,20 @@ function App() {
     <div className="App">
 
       <BrowserRouter>
-        <ChannelsProvider>
-          <ProgramsProvider>
-            <Navbar />
-            <NavbarAside />
+        <UserProvider>
+          <ChannelsProvider>
+            <ProgramsProvider>
+              <Navbar />
+              <NavbarAside />
 
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/channels/:channelId" component={ChannelPage} />
+              <Route exact path="/programs/:programId" component={ProgramPage} />
+              <Route exact path="/all-schedule" component={SchedulePage} />
 
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/channels/:channelId" component={ChannelPage} />
-            <Route exact path="/programs/:programId" component={ProgramPage} />
-            <Route exact path="/all-schedule" component={SchedulePage} />
-
-          </ProgramsProvider>
-        </ChannelsProvider>
+            </ProgramsProvider>
+          </ChannelsProvider>
+        </UserProvider>
       </BrowserRouter>
 
     </div>
