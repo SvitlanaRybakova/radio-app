@@ -86,7 +86,7 @@ html {
   align-items: center;
   font-size: 1.2rem;
   margin-top: 120px;
-  margin-bottom: 30px;
+  margin-bottom: 85px;
 }
 
 .imgWrapper {
@@ -154,13 +154,20 @@ html {
 
 .scheduleWrapper {
   margin-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-size: 1.2rem;
   display: flex;
+  cursor: pointer;
 }
-
+.scheduleWrapper:hover{
+  background: #c1c1c173;
+    transition: 0.5s;
+}
 .date {
   font-weight: bold;
   margin-right: 20px;
+  min-width: 160px;
 }
 
 .programTitle {

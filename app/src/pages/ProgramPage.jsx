@@ -22,11 +22,11 @@ const ProgramPage = (props) => {
       return (
         <>
           <div className={style.container}>
-            
+
             <div className={style.titleWrapper}>
-            <h1 className={style.ProgramTitle}>{program.name}</h1>
-            <i style={{ fontSize: "30px", color: "#ffc107", cursor:"pointer" }}
-            className="far fa-heart"></i>
+              <h1 className={style.ProgramTitle}>{program.name}</h1>
+              <i style={{ fontSize: "30px", color: "#ffc107", cursor: "pointer" }}
+                className="far fa-heart"></i>
             </div>
 
             <div className={style.flexWrapper}>
@@ -60,14 +60,16 @@ const ProgramPage = (props) => {
 
               <div className="">
                 <i style={{ fontSize: "20px", display: "inline-block", color: "#ffc107" }} className="far fa-envelope"></i>
-                <a className={style.email} href={ `mailto: ${program.email}`}>Skriv email till oss</a>
+                <a className={style.email} href={`mailto: ${program.email}`}>Skriv email till oss</a>
               </div>
- 
+
             </div>
             {
               program.phone ?
                 (<div className={style.phoneWrapper}>
-                  <i style={{ fontSize: "20px", display: "inline-block", color: "#ffc107" }} className="fas fa-phone-alt"></i>
+                  <i
+                    style={{ fontSize: "20px", display: "inline-block", color: "#ffc107" }}
+                    className="fas fa-phone-alt"></i>
                   <p className={style.phone}>{program.phone}</p>
                 </div>)
                 :
@@ -79,7 +81,9 @@ const ProgramPage = (props) => {
             {program.socialmediaplatforms.map((platform) => {
               if (platform.platform === "Facebook") {
                 return (
-                  <div className={style.social}>
+                  <div key={platform.platform}
+                    className={style.social}
+                  >
                     <i style={{ fontSize: "20px", color: "#ffc107" }}
                       className="fab fa-facebook-square"></i>
                     <a className={style.socialLink}
@@ -90,18 +94,23 @@ const ProgramPage = (props) => {
 
 
               } if (platform.platform === "Twitter") {
-                return (<div className={style.social}>
-                  <i style={{ fontSize: "20px", color: "#ffc107" }}
-                    className="fab fa-twitter-square"></i>
-                  <a className={style.socialLink}
-                    href={platform.platformurl}>
-                    {platform.platform}
-                  </a>
-                </div>)
+                return (
+                  <div
+                    key={platform.platform}
+                    className={style.social}>
+                    <i style={{ fontSize: "20px", color: "#ffc107" }}
+                      className="fab fa-twitter-square"></i>
+                    <a className={style.socialLink}
+                      href={platform.platformurl}>
+                      {platform.platform}
+                    </a>
+                  </div>)
 
               } if (platform.platform === "Instagram") {
                 return (
-                  <div className={style.social}>
+                  <div
+                    key={platform.platform}
+                    className={style.social}>
                     <i style={{ fontSize: "20px", color: "#ffc107" }}
                       className="fab fa-instagram"></i>
                     <a className={style.socialLink}
@@ -110,7 +119,7 @@ const ProgramPage = (props) => {
                     </a>
                   </div>
                 )
-              } else{
+              } else {
                 return <></>;
               }
 

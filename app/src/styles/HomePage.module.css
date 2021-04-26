@@ -48,12 +48,11 @@
 
 
 .listContent {
-  /* border: 1px solid red; */
   background-image: url('../assets/bg.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 86vh;
+  height: 78vh;
   overflow: scroll;
   overflow-x: hidden;
   position: relative;
@@ -63,7 +62,6 @@
 .cardWrapper {
   width: 100%;
   position: relative;
-  /* background-color: rgba(0, 0, 0, 0.8); */
 }
 
 /* scroll */

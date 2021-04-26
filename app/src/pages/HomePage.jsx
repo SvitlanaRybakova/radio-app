@@ -5,7 +5,7 @@ import style from "../styles/HomePage.module.css";
 import Spinner from "../components/Spinner";
 import ListItemCard from "../components/ListItemCard";
 import Filter from "../components/Filter";
-import PlayerBtn from "../components/PlayerBtn";
+
 
 
 
@@ -177,7 +177,7 @@ const HomePage = () => {
         </div>
 
       </div>
-      <PlayerBtn src={idForAudio} />
+
     </div>
   )
 }

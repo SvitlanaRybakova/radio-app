@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserProvider";
 
@@ -7,9 +7,6 @@ import style from "../styles/Navbar.module.css";
 const Navbar = () => {
   const { isAuthorized, logout } = useContext(UserContext);
 
-
-
-  // console.log('isAuthorized', isAuthorized.userName);
   return (
     <div className={style.wrapper}>
       <div className={style.loginWrapper}>
@@ -30,10 +27,7 @@ const Navbar = () => {
               <i className="fas fa-sign-in-alt"></i>
             </Link>
         }
-
       </div>
-
-
     </div>
   )
 }

@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { ChannelsContext } from "../contexts/ChannelsProvider";
 
 import style from "../styles/SchedulePage.module.css";
 
 const SchedulePage = () => {
+  const history = useHistory();
   const { channels, getChannelSchedule, channelSchedule, setChannelSchedule } = useContext(ChannelsContext);
 
   const [pickedChannel, setChannel] = useState(null);
@@ -34,7 +36,9 @@ const SchedulePage = () => {
     setCurrentChannel(res[0]);
   }
 
-
+  const getProgramId = (programId) => {
+    history.push(`/programs/${programId}`);
+  }
 
   const rederSchedule = () => {
 
@@ -52,7 +56,7 @@ const SchedulePage = () => {
                     >{option.name}</option>
                   ))}
                 </select>
-         
+      
                 <input  className={style.datapicker} type="date" id="date" name="date"
                   onChange={(e) => setDate(e.target.value)} />
       
@@ -88,7 +92,9 @@ const SchedulePage = () => {
 
               channelSchedule.map(progr => (
                 <>
-                  <div className={style.scheduleWrapper}>
+                  <div className={style.scheduleWrapper}
+                  onClick={() => getProgramId(progr.program.id)}
+                  >
                     <p className={style.date}>
                       <span>{new Date(progr.starttimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}</span>
                       <span> - </span>
