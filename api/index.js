@@ -7,10 +7,12 @@ const port = 3001;
 const channelRoutes = require("./routes/channelRoutes.js");
 const programRoutes = require("./routes/programRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
+const favoriteRoutes = require("./routes/favoriteRoutes.js");
 
 const chanelsPrefix = "/api/v1/channels";
 const programsPrefix = "/api/v1/programs";
 const userPrefix = "/api/v1/users";
+const favoritePrefix = "/api/v1/favorite-list";
 
 //
 
@@ -32,6 +34,7 @@ app.use(
 app.use(chanelsPrefix, channelRoutes);
 app.use(programsPrefix, programRoutes);
 app.use(userPrefix, userRoutes);
+app.use(favoritePrefix, favoriteRoutes);
 
 
 // Serve static files, makes the frontend files "available" to the backend
