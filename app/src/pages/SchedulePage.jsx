@@ -23,9 +23,8 @@ const SchedulePage = () => {
 
   const gettingSchedule = async (pickedChannel, date) => {
     let response = await getChannelSchedule(pickedChannel, date);
-
     setChannelSchedule(response);
-    console.log(response);
+   
   }
 
 

@@ -7,9 +7,6 @@ export const FavoriteContext = createContext();
 const FavoriteProvider = (props) => {
   const [isFavorite, setFavorite] = useState(false);
 
-  useEffect(() => {
-    getFavoriteList()
-  }, [])
 
 
   const getFavoriteList = async () => {

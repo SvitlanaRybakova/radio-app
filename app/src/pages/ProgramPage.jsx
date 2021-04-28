@@ -18,7 +18,6 @@ const ProgramPage = (props) => {
 
   const gettingProgramById = async (programId) => {
     let response = await getProgById(programId)
-    console.log(response);
     setProgram(response)
   }
 

@@ -1,0 +1,146 @@
+.wrapper {
+  margin-left: 275px;
+  position: relative;
+  
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  
+}
+
+.list {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  margin-bottom: 50px;
+
+}
+
+.listContent {
+  background-image: url('../assets/bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 86vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+/* scroll */
+
+html {
+  --scrollbarBG: #bdb6b6;
+  --thumbBG: #4c4c4cbd;
+}
+
+.listContent::-webkit-scrollbar {
+  width: 11px;
+}
+
+.listContent {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+.listContent::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+.listContent::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+
+/* ./scroll */
+
+.cardWrapper {
+  padding: 30px 30px 40px 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+ 
+  
+}
+
+.cardItem {
+  display: flex;
+  justify-content: space-between;
+   margin-bottom: 40px;
+}
+
+
+.cardContainer {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.imgCardWrapper {
+  padding: 10px;
+  height: 80px;
+  position: relative;
+  cursor: pointer;
+  flex-basis: calc((100%/5) - 2rem);
+}
+.headerTitle{
+  /* margin-top: 50px; */
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.blackout {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  background-color: #00000024;
+  z-index: 1;
+}
+
+.itemImg {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+
+.cardDetails {
+  flex-basis: calc((100%/2) - 2rem);
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-right: 40px;
+  margin-bottom: 30px;
+}
+
+
+
+.description {
+  margin-top: 10px;
+  background: red;
+}
+
+.channeltypeWrapper {
+  text-align: right;
+}

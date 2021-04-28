@@ -9,7 +9,7 @@ const NavbarAside = () => {
   const [links] = useState([
     { name: "Kanaler & program ", url: "/" },
     { name: "Tablå", url: "/all-schedule" },
-    { name: "Favoritlista", url: "" }
+    { name: "Favoritlista", url: "/favorite-list" }
   ]);
 
   const renderLinks = () => {
