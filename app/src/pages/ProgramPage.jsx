@@ -1,14 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { ProgramsContext } from '../contexts/ProgramsProvider';
+import { FavoriteContext } from "../contexts/FavoriteProvider";
+import { UserContext } from "../contexts/UserProvider";
 import Spinner from '../components/Spinner';
 import style from '../styles/ProgramPage.module.css';
-import { FavoriteContext } from "../contexts/FavoriteProvider";
 
 const ProgramPage = (props) => {
   const { getProgById } = useContext(ProgramsContext);
-  const { isFavorite, setFavorite, addNewProgram, deleteProgram } = useContext(FavoriteContext);
+  const { settingFavorite } = useContext(FavoriteContext);
+  const { isAuthorized, checkAuthorization } = useContext(UserContext);
 
-
+  const history = useHistory();
   const [program, setProgram] = useState();
   const { programId } = props.match.params;
 
@@ -16,30 +19,23 @@ const ProgramPage = (props) => {
     gettingProgramById(programId)
   }, [])
 
+  useEffect(() => {
+    checkAuthorization()
+    console.log(isAuthorized);
+
+  }, isAuthorized)
+
   const gettingProgramById = async (programId) => {
     let response = await getProgById(programId)
     setProgram(response)
   }
 
 
-  const settingFavorite = async (e, image, name, description, id) => {
-    const program = {
-      image,
-      name,
-      description,
-      userId: 1,
-      favoriteListId: id
-    }
-    let result = await addNewProgram(program);
-    setFavorite(true);
-    console.log(result);
+  const clickAddFavorite = (image, name, description, id, isAuthorized) => {
+    console.log(isAuthorized);
+    settingFavorite(image, name, description, id)
+    history.push("/favorite-list");
   }
-
-  const deleteFavorite = (id) => {
-    deleteProgram(id)
-    setFavorite(false);
-  }
-
 
   const renderProgram = () => {
     if (program) {
@@ -49,16 +45,17 @@ const ProgramPage = (props) => {
 
             <div className={style.titleWrapper}>
               <h1 className={style.ProgramTitle}>{program.name}</h1>
-              {isFavorite ?
-                <div onClick={() => deleteFavorite(program.id)}>
-                  <i style={{ fontSize: "30px", color: "#ffc107", cursor: "pointer" }}
-                    className="far fa-heart"></i>
-                </div>
-                :
-                <div onClick={(e) => settingFavorite(e, program.programimage, program.name, program.description, program.id)}>
-                  <i style={{ fontSize: "30px", color: "#ffc107", cursor: "pointer" }} className="fas fa-heart"></i>
-                </div>
+              {
+                isAuthorized ?
+                  <div onClick={() => clickAddFavorite(program.programimage, program.name, program.description, program.id)} >
+                    <i style={{ fontSize: "30px", color: "#ffc107", cursor: "pointer" }} className="far fa-heart"></i>
+                  </div>
+                  :
+                  "you shoud be authorized"
               }
+
+
+
 
             </div>
 

@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { ChannelsContext } from "../contexts/ChannelsProvider";
 import { ProgramsContext } from "../contexts/ProgramsProvider";
+// import { FavoriteContext }from "../contexts/FavoriteProvider";
 import style from "../styles/HomePage.module.css";
 import Spinner from "../components/Spinner";
 import ListItemCard from "../components/ListItemCard";
@@ -11,7 +12,7 @@ import Filter from "../components/Filter";
 
 const HomePage = () => {
 
-
+  // const { getFavoriteList, list } = useContext(FavoriteContext);
   const { channels, channelCategories } = useContext(ChannelsContext)
   const { programCategories, getProgramsByCategory, getAllPrograms } = useContext(ProgramsContext);
   const [idForAudio, setIdForAudio] = useState();
@@ -30,8 +31,8 @@ const HomePage = () => {
 
   useEffect(() => {
     render();
-
   }, [])
+
 
 
   const gettingPrograms = async (programType) => {
@@ -45,7 +46,7 @@ const HomePage = () => {
 
   }
 
-  
+
 
   const renderChannels = () => {
 
@@ -62,7 +63,7 @@ const HomePage = () => {
       }
 
       return filteredChannels.map((channel) => (
-        <ListItemCard key={channel.id} channelItem={channel}
+        <ListItemCard key={channel.id} item={channel}
           isChannel={true}
           id={channel.id}
           image={channel.image}
@@ -81,9 +82,9 @@ const HomePage = () => {
   const renderPrograms = () => {
 
     if (programs) {
-
+      
       return programs.map((program) => (
-        <ListItemCard key={program.id} channelItem={program}
+        <ListItemCard key={program.id} item={program}
           id={program.id}
           image={program.programimage}
           name={program.name}

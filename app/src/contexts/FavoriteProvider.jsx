@@ -1,11 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext,  useState } from "react";
 
 export const FavoriteContext = createContext();
 
-
-
 const FavoriteProvider = (props) => {
-  const [isFavorite, setFavorite] = useState(false);
+
+  // const [isFavorite, setFavorite] = useState(false);
+  const [list, setList] = useState();
+  const [isDelete, setDelete] = useState(false);
 
 
 
@@ -15,8 +16,7 @@ const FavoriteProvider = (props) => {
       throw new Error(`An error has occured: ${response.status}`)
     } else {
       const list = await response.json();
-      console.log(list);
-      return list
+      setList(list) 
     }
   }
 
@@ -47,12 +47,32 @@ const FavoriteProvider = (props) => {
 
   }
 
+  const settingFavorite = async ( image, name, description, id) => {
+    const program = {
+      image,
+      name,
+      description,
+      userId: 1,
+      favoriteListId: id
+    }
+    let result = await addNewProgram(program);
+  }
+
+ 
+
+
+
   const value = {
     getFavoriteList,
-    isFavorite,
-    setFavorite,
+    // isFavorite,
+    // setFavorite,
     addNewProgram,
     deleteProgram,
+    list, 
+    setList, 
+    isDelete, 
+    setDelete,
+    settingFavorite
   }
 
 

@@ -5,20 +5,12 @@ import style from "../styles/FavoritePage.module.css";
 
 const FavoritePage = () => {
 
-  const { getFavoriteList, deleteProgram } = useContext(FavoriteContext);
-  const [list, setList] = useState();
-  const [isDelete, setDelete] = useState(false);
+  const { getFavoriteList, deleteProgram, list,  isDelete, setDelete } = useContext(FavoriteContext);
+  
 
   useEffect(() => {
-    gettingAllProgram()
+    getFavoriteList()
   }, [isDelete])
-
-
-  const gettingAllProgram = async () => {
-    let response = await getFavoriteList();
-    setList(response);
-    console.log(response);
-  }
 
 const handleClick = (id) => {
   deleteProgram(id)
@@ -32,6 +24,7 @@ const handleClick = (id) => {
           <div key={program.favoriteListId} className={style.cardItem}>
             <div className={style.cardContainer}>
               {/* image */}
+              <div className={style.flex}>
               <div className={style.imgCardWrapper}>
                 <img className={style.itemImg} src={program.image ? program.image : "NO IMAGE"} alt={program.name} />
               </div>
@@ -41,14 +34,12 @@ const handleClick = (id) => {
                 <p className={style.title}>{program.name}</p>
 
                 {program.description ?
-                  <div className={style.detailsOptional}>
                     <p>{program.description}</p>
-                  </div>
                   :
                   ""
                 }
               </div>
-
+              </div>
               {/* delete btn */}
               <div className={style.channeltypeWrapper}
                 onClick={() => handleClick(program.favoriteListId)}

@@ -68,7 +68,6 @@ html {
   margin-bottom: 30px;
   color: #ffffff;
   font-size: 1.2rem;
-  cursor: pointer;
  
   
 }
@@ -81,22 +80,30 @@ html {
 
 
 .cardContainer {
+  padding-top: 30px;
+  padding-bottom: 30px;
   width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center; 
 }
-
+.flex{
+  display: flex;
+  align-items: center;
+}
 .imgCardWrapper {
   padding: 10px;
   height: 80px;
+  width: 80px;
+  margin-right: 30px;
   position: relative;
   cursor: pointer;
-  flex-basis: calc((100%/5) - 2rem);
+}
+.cardDetails{
+  width: 89%;
 }
 .headerTitle{
-  /* margin-top: 50px; */
   margin-bottom: 50px;
   text-align: center;
 }
@@ -124,7 +131,8 @@ html {
 
 
 .cardDetails {
-  flex-basis: calc((100%/2) - 2rem);
+  /* background: red; */
+  /* flex-basis: calc((100%/2) - 2rem); */
 }
 
 .title {
@@ -134,12 +142,6 @@ html {
   margin-bottom: 30px;
 }
 
-
-
-.description {
-  margin-top: 10px;
-  background: red;
-}
 
 .channeltypeWrapper {
   text-align: right;

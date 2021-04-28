@@ -20,8 +20,8 @@ function App() {
     <div className="App">
 
       <BrowserRouter>
-        <FavoriteProvider>
-          <UserProvider>
+        <UserProvider>
+          <FavoriteProvider>
             <ChannelsProvider>
               <ProgramsProvider>
                 <Navbar />
@@ -36,8 +36,8 @@ function App() {
 
               </ProgramsProvider>
             </ChannelsProvider>
-          </UserProvider>
-        </FavoriteProvider>
+          </FavoriteProvider>
+        </UserProvider>
       </BrowserRouter>
 
     </div>

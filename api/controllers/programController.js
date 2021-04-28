@@ -9,6 +9,7 @@ const getAllPrograms = async (req, res) => {
     `http://api.sr.se/api/v2/programs?${json}&${paginationFalse}`
   );
   programs = await programs.json();
+
   res.json(programs);
 }
 

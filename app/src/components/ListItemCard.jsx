@@ -1,8 +1,11 @@
 import { useHistory } from "react-router-dom";
-
 import styles from "../styles/ListItemCard.module.css";
+import { useContext } from 'react';
+import { FavoriteContext } from "../contexts/FavoriteProvider";
+
 
 const ListItemCard = ({
+
   isChannel,
   id,
   image,
@@ -16,7 +19,10 @@ const ListItemCard = ({
   description,
 
 }) => {
+
+  const { settingFavorite } = useContext(FavoriteContext);
   const history = useHistory();
+
 
   const handleClick = (id) => {
     if (isChannel) {
@@ -34,6 +40,11 @@ const ListItemCard = ({
     setIdForAudio(url);
   }
 
+  const clickAddFavorite = (e) => {
+    e.stopPropagation();
+    settingFavorite(image, name, description, id);
+    history.push("/favorite-list");
+  }
 
   return (
     <>
@@ -77,14 +88,23 @@ const ListItemCard = ({
             </div>
 
             {/* type or heart */}
-            <div className={styles.channeltypeWrapper}
-              >
-              {channeltype ?
-                <span className={styles.channeltype}>{channeltype}</span>
-                :
-                ""}
 
-            </div>
+
+
+
+            {channeltype ?
+              <div className={styles.channeltypeWrapper}>
+                <span className={styles.channeltype}>{channeltype}</span>
+              </div>
+              :
+              <div className={styles.channeltypeWrapper}
+                onClick={(e) => clickAddFavorite(e)}>
+                <i style={{ fontSize: "1.5rem" }}
+                  className="far fa-heart"></i>
+              </div>
+
+            }
+
             {/* end type or heart */}
           </div>
 
