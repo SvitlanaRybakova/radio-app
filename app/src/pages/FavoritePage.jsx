@@ -44,7 +44,7 @@ const handleClick = (id) => {
               <div className={style.channeltypeWrapper}
                 onClick={() => handleClick(program.favoriteListId)}
               >
-                <i style={{ color: "#ffc107", fontSize: "1.5rem", flexBasis: "20%" }}
+                <i style={{ color: "#ffc107", fontSize: "1.5rem", flexBasis: "20%", cursor: "pointer" }}
                   class="far fa-trash-alt"></i>
               </div>
               {/* end delete btn */}

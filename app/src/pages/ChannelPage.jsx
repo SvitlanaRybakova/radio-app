@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import style from "../styles/ChannelPage.module.css";
 import { ChannelsContext } from "../contexts/ChannelsProvider";
+import { UserContext } from "../contexts/UserProvider";
 import useAudio from "../hooks/useAudio";
 import Spinner from "../components/Spinner"
 
@@ -9,7 +10,7 @@ import ListItemCard from "../components/ListItemCard";
 
 
 const ChannelPage = (props) => {
-  
+  const { isAuthorized, checkAuthorization } = useContext(UserContext);
   const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, } = useContext(ChannelsContext)
   
 
@@ -23,6 +24,11 @@ const ChannelPage = (props) => {
     getChannelById(channelId);
     getChannelSchedule(channelId);
   }, []);
+
+  useEffect(() => {
+    checkAuthorization();
+  }, isAuthorized)
+
 
   const render = () => {
     if (singleChannel && channelSchedule) {
@@ -63,6 +69,7 @@ const ChannelPage = (props) => {
             {channelSchedule.map(elem => (
               <ListItemCard
                 key={(+new Date()).toString(32) + Math.random().toString(32).substring(2, 9)}
+                userId={isAuthorized.userId}
                 isChannel={false}
                 elem={elem}
                 id={elem.program.id}

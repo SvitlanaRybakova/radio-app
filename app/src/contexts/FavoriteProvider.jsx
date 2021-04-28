@@ -4,7 +4,7 @@ export const FavoriteContext = createContext();
 
 const FavoriteProvider = (props) => {
 
-  // const [isFavorite, setFavorite] = useState(false);
+ 
   const [list, setList] = useState();
   const [isDelete, setDelete] = useState(false);
 
@@ -47,15 +47,16 @@ const FavoriteProvider = (props) => {
 
   }
 
-  const settingFavorite = async ( image, name, description, id) => {
+  const settingFavorite = async ( image, name, description, id, userId) => {
     const program = {
       image,
       name,
       description,
-      userId: 1,
+      userId,
       favoriteListId: id
     }
     let result = await addNewProgram(program);
+    console.log(result);
   }
 
  

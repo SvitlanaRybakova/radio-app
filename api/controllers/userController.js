@@ -2,7 +2,7 @@ const sqlite3 = require("sqlite3");
 const Encrypt = require("../Encrypt");
 const path = require("path");
 
-const db = new sqlite3.Database(path.join(__dirname, "../RadioKanaler.db"));
+const db = new sqlite3.Database(path.join(__dirname, "../../app/RadioKanaler.db"));
 
 
 const whoami = (req, res) => {

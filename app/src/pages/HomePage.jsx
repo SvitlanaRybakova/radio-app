@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { ChannelsContext } from "../contexts/ChannelsProvider";
 import { ProgramsContext } from "../contexts/ProgramsProvider";
-// import { FavoriteContext }from "../contexts/FavoriteProvider";
+import { UserContext } from "../contexts/UserProvider";
 import style from "../styles/HomePage.module.css";
 import Spinner from "../components/Spinner";
 import ListItemCard from "../components/ListItemCard";
@@ -12,7 +12,7 @@ import Filter from "../components/Filter";
 
 const HomePage = () => {
 
-  // const { getFavoriteList, list } = useContext(FavoriteContext);
+  const { isAuthorized, checkAuthorization } = useContext(UserContext);
   const { channels, channelCategories } = useContext(ChannelsContext)
   const { programCategories, getProgramsByCategory, getAllPrograms } = useContext(ProgramsContext);
   const [idForAudio, setIdForAudio] = useState();
@@ -24,7 +24,6 @@ const HomePage = () => {
   useEffect(() => {
     if (!isChannels) {
       gettingPrograms(programType);
-      console.log(programType);
     }
   }, [isChannels, programType])
 
@@ -33,7 +32,9 @@ const HomePage = () => {
     render();
   }, [])
 
-
+  useEffect(() => {
+    checkAuthorization()
+  }, isAuthorized)
 
   const gettingPrograms = async (programType) => {
     let response;
@@ -81,10 +82,11 @@ const HomePage = () => {
 
   const renderPrograms = () => {
 
-    if (programs) {
+    if (programs && isAuthorized) {
       
       return programs.map((program) => (
         <ListItemCard key={program.id} item={program}
+        userId={isAuthorized.userId}
           id={program.id}
           image={program.programimage}
           name={program.name}

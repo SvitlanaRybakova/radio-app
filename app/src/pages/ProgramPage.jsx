@@ -20,9 +20,7 @@ const ProgramPage = (props) => {
   }, [])
 
   useEffect(() => {
-    checkAuthorization()
-    console.log(isAuthorized);
-
+    checkAuthorization();
   }, isAuthorized)
 
   const gettingProgramById = async (programId) => {
@@ -31,9 +29,9 @@ const ProgramPage = (props) => {
   }
 
 
-  const clickAddFavorite = (image, name, description, id, isAuthorized) => {
-    console.log(isAuthorized);
-    settingFavorite(image, name, description, id)
+  const clickAddFavorite = (image, name, description, id, userId) => {
+    // console.log(isAuthorized);
+    settingFavorite(image, name, description, id, userId)
     history.push("/favorite-list");
   }
 
@@ -47,7 +45,7 @@ const ProgramPage = (props) => {
               <h1 className={style.ProgramTitle}>{program.name}</h1>
               {
                 isAuthorized ?
-                  <div onClick={() => clickAddFavorite(program.programimage, program.name, program.description, program.id)} >
+                  <div onClick={() => clickAddFavorite(program.programimage, program.name, program.description, program.id, isAuthorized.userId)} >
                     <i style={{ fontSize: "30px", color: "#ffc107", cursor: "pointer" }} className="far fa-heart"></i>
                   </div>
                   :
