@@ -1,16 +1,17 @@
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const FavoriteContext = createContext();
 
 
 
 const FavoriteProvider = (props) => {
+  const [isFavorite, setFavorite] = useState(false);
 
   useEffect(() => {
     getFavoriteList()
   }, [])
 
-  console.log('in');
+
   const getFavoriteList = async () => {
     let response = await fetch("/api/v1/favorite-list");
     if (!response.ok) {
@@ -22,10 +23,39 @@ const FavoriteProvider = (props) => {
     }
   }
 
+  const addNewProgram = async (newProgram) => {
 
+    let result = await fetch("/api/v1/favorite-list/add-new-favorite-programm", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newProgram),
+    });
+    result = await result.json();
+
+    await getFavoriteList();
+
+    return result;
+  };
+
+
+  const deleteProgram = async (favoriteListId) => {
+    let result = await fetch(`/api/v1/favorite-list/favorite/${favoriteListId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+  }
 
   const value = {
     getFavoriteList,
+    isFavorite,
+    setFavorite,
+    addNewProgram,
+    deleteProgram,
   }
 
 

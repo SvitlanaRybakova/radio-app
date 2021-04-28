@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import style from "../styles/ChannelPage.module.css";
-// import { useHistory } from "react-router-dom";
 import { ChannelsContext } from "../contexts/ChannelsProvider";
 import useAudio from "../hooks/useAudio";
 import Spinner from "../components/Spinner"
@@ -10,7 +9,7 @@ import ListItemCard from "../components/ListItemCard";
 
 
 const ChannelPage = (props) => {
-  // const history = useHistory();
+  
   const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, } = useContext(ChannelsContext)
   
 

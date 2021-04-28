@@ -1,6 +1,5 @@
 import { useHistory } from "react-router-dom";
 
-
 import styles from "../styles/ListItemCard.module.css";
 
 const ListItemCard = ({
@@ -17,9 +16,6 @@ const ListItemCard = ({
   description,
 
 }) => {
-
-
-
   const history = useHistory();
 
   const handleClick = (id) => {
@@ -37,6 +33,7 @@ const ListItemCard = ({
     e.stopPropagation();
     setIdForAudio(url);
   }
+
 
   return (
     <>
@@ -80,12 +77,13 @@ const ListItemCard = ({
             </div>
 
             {/* type or heart */}
-            <div className={styles.channeltypeWrapper}>
+            <div className={styles.channeltypeWrapper}
+              >
               {channeltype ?
                 <span className={styles.channeltype}>{channeltype}</span>
                 :
-                <i style={{ fontSize: "1.5rem" }}
-                  className="far fa-heart"></i>}
+                ""}
+
             </div>
             {/* end type or heart */}
           </div>
