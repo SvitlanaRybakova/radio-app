@@ -9,6 +9,8 @@ import ProgramPage from "./pages/ProgramPage.jsx";
 import SchedulePage from "./pages/SchedulePage.jsx";
 import UserProvider from "./contexts/UserProvider"
 import RegistrationPage from "./pages/RegistrationPage.jsx";
+import FavoriteProvider from "./contexts/FavoriteProvider.jsx";
+import FavoritePage from "./pages/FavoritePage";
 
 
 
@@ -18,21 +20,24 @@ function App() {
     <div className="App">
 
       <BrowserRouter>
-        <UserProvider>
-          <ChannelsProvider>
-            <ProgramsProvider>
-              <Navbar />
-              <NavbarAside />
+        <FavoriteProvider>
+          <UserProvider>
+            <ChannelsProvider>
+              <ProgramsProvider>
+                <Navbar />
+                <NavbarAside />
 
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/channels/:channelId" component={ChannelPage} />
-              <Route exact path="/programs/:programId" component={ProgramPage} />
-              <Route exact path="/all-schedule" component={SchedulePage} />
-              <Route exact path="/registration" component={RegistrationPage} />
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/channels/:channelId" component={ChannelPage} />
+                <Route exact path="/programs/:programId" component={ProgramPage} />
+                <Route exact path="/all-schedule" component={SchedulePage} />
+                <Route exact path="/registration" component={RegistrationPage} />
+                <Route exact path="/favorite-list" component={FavoritePage} />
 
-            </ProgramsProvider>
-          </ChannelsProvider>
-        </UserProvider>
+              </ProgramsProvider>
+            </ChannelsProvider>
+          </UserProvider>
+        </FavoriteProvider>
       </BrowserRouter>
 
     </div>

@@ -50,7 +50,7 @@ const ProgramsProvider = (props) => {
   }
 
 
-  const getProgramById = async (programId) => {
+  const getProgById = async (programId) => {
     let response = await fetch(`/api/v1/programs/${programId}`);
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -61,40 +61,12 @@ const ProgramsProvider = (props) => {
 
     return program.program
   }
-  getProgramById(35)
-
-  // const getProgramsByChannel = async (channelId) => {
-  //   let response = await fetch(`/api/v1/programs/programms-by-channel/${channelId}`);
-  //   if (!response.ok) {
-  //     const message = `An error has occured: ${response.status}`;
-  //     throw new Error(message);
-  //   }
-  //   let programs = await response.json();
-  //   setProgramsByChannel(programs);
-  // }
-
-  // const getAllCategoriesName = async () => {
-  //   let response = await fetch("/api/v1/programs/categories");
-  //   if (!response.ok) {
-  //     const message = `An error has occured: ${response.status}`;
-  //     throw new Error(message);
-  //   }
-  //   const categories = await response.json()
-  //   setCategories(categories);
-
-  // }
-
-
+  
   const values = {
     programCategories,
     getAllPrograms,
     getProgramsByCategory,
-    getProgramById,
-    // programsByChannel,
-    // getProgramsByChannel,
-
-
-
+    getProgById,
   }
   return (
     <ProgramsContext.Provider value={values}>

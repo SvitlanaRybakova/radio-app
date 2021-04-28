@@ -4,7 +4,7 @@ import Spinner from '../components/Spinner';
 import style from '../styles/ProgramPage.module.css';
 
 const ProgramPage = (props) => {
-  const { getProgramById } = useContext(ProgramsContext);
+  const { getProgById } = useContext(ProgramsContext);
   const [program, setProgram] = useState();
   const { programId } = props.match.params;
 
@@ -13,7 +13,7 @@ const ProgramPage = (props) => {
   }, [])
 
   const gettingProgramById = async (programId) => {
-    let response = await getProgramById(programId)
+    let response = await getProgById(programId)
     setProgram(response)
   }
 

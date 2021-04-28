@@ -18,7 +18,6 @@ const getProgramById = async (req, res) => {
   let program = await fetch(
     `http://api.sr.se/api/v2/programs/${req.params.programId}?${json}`
   );
-  console.log("PROGRAM", program);
   program = await program.json();
   
   res.json(program);

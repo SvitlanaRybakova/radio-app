@@ -54,10 +54,6 @@
   z-index: 0;
 }
 
-.blackout:hover {
-  border: 5px solid #ffc107;
-  transition: 0.5s;
-}
 
 .cardDetails {
   flex-basis: calc((100%/2) - 2rem);

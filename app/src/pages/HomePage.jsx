@@ -45,11 +45,7 @@ const HomePage = () => {
 
   }
 
-  useEffect(() => {
-    console.log(idForAudio);
-
-  }, [idForAudio])
-
+  
 
   const renderChannels = () => {
 
