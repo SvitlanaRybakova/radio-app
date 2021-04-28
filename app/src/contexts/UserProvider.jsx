@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const UserContext = createContext();
@@ -15,11 +15,7 @@ const UserProvider = (props) => {
   const [usersLogin, setUserLogin] = useState(initialUsers);
   const [isAuthorized, setAuthorized] = useState(null)
 
-  useEffect(() => {
-    checkAuthorization()
-    
-  }, isAuthorized)
-
+  
 
   const handleRegistration = (e) => {
     const { name, value } = e.target;
@@ -63,7 +59,6 @@ const UserProvider = (props) => {
 
   const checkLogin = async (e) => {
     e.preventDefault();
-    console.log(usersLogin);
     let response = await fetch("/api/v1/users/login", {
       method: "POST",
       credentials: 'same-origin',
@@ -80,7 +75,6 @@ const UserProvider = (props) => {
     else {
       alert('Hello, you are authorized');
       checkAuthorization();
-      console.log(history);
       history.push("/");
     }
     return await response.json();
@@ -89,6 +83,9 @@ const UserProvider = (props) => {
   const logout = async () => {
     let response = await fetch("/api/v1/users/logout");
     response = await response.json();
+    if(!response.ok){
+      throw new Error()
+    }
     await checkAuthorization()
   }
 

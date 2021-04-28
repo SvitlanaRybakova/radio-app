@@ -19,7 +19,6 @@
 }
 
 .listContent {
-  border: 1px solid red;
   background-image: url('../assets/bg.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -115,7 +114,6 @@ html {
 .programDescription, .programSlug{
   margin-bottom: 20px;
   font-size: 1.3rem;
-  /* width: 90%; */
   margin: 0 auto;
   
 }

@@ -45,7 +45,7 @@ const ProgramsProvider = (props) => {
     }
 
     let programs = await response.json();
-    console.log(programs);
+    
     return programs.programs;
   }
 

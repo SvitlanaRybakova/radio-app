@@ -15,7 +15,6 @@ const HomePage = () => {
   const { isAuthorized, checkAuthorization } = useContext(UserContext);
   const { channels, channelCategories } = useContext(ChannelsContext)
   const { programCategories, getProgramsByCategory, getAllPrograms } = useContext(ProgramsContext);
-  const [idForAudio, setIdForAudio] = useState();
   const [isChannels, setIsChannels] = useState(true);
   const [channeltype, setChanneltype] = useState("All");
   const [programType, setProgramType] = useState(0);
@@ -48,7 +47,6 @@ const HomePage = () => {
   }
 
 
-
   const renderChannels = () => {
 
     if (channels) {
@@ -71,7 +69,7 @@ const HomePage = () => {
           name={channel.name}
           channeltype={channel.channeltype}
           url={channel.liveaudio.url}
-          setIdForAudio={setIdForAudio} />
+          />
       ))
     }
 

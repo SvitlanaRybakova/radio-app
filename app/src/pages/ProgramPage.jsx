@@ -30,7 +30,6 @@ const ProgramPage = (props) => {
 
 
   const clickAddFavorite = (image, name, description, id, userId) => {
-    // console.log(isAuthorized);
     settingFavorite(image, name, description, id, userId)
     history.push("/favorite-list");
   }
@@ -49,7 +48,7 @@ const ProgramPage = (props) => {
                     <i style={{ fontSize: "30px", color: "#ffc107", cursor: "pointer" }} className="far fa-heart"></i>
                   </div>
                   :
-                  "you shoud be authorized"
+                  "you should be authorized"
               }
 
 

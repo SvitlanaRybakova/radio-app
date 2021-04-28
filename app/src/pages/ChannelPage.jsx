@@ -69,7 +69,7 @@ const ChannelPage = (props) => {
             {channelSchedule.map(elem => (
               <ListItemCard
                 key={(+new Date()).toString(32) + Math.random().toString(32).substring(2, 9)}
-                userId={isAuthorized.userId}
+                isAuthorized={isAuthorized}
                 isChannel={false}
                 elem={elem}
                 id={elem.program.id}

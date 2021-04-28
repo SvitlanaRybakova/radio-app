@@ -140,3 +140,10 @@ html {
 .channeltypeWrapper {
   text-align: right;
 }
+.warning{
+  margin-top: 100px;
+  font-size: 2rem;
+  font-family: 'Hind Madurai', sans-serif;
+  text-align: center;
+  color: #ffc107;
+}

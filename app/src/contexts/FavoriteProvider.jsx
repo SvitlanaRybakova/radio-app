@@ -10,12 +10,14 @@ const FavoriteProvider = (props) => {
 
 
 
-  const getFavoriteList = async () => {
-    let response = await fetch("/api/v1/favorite-list");
+  const getFavoriteList = async (userId) => {
+    
+    let response = await fetch(`/api/v1/favorite-list/${userId}`);
     if (!response.ok) {
       throw new Error(`An error has occured: ${response.status}`)
     } else {
       const list = await response.json();
+      
       setList(list) 
     }
   }
@@ -44,6 +46,9 @@ const FavoriteProvider = (props) => {
         "content-type": "application/json",
       },
     });
+    if(!result.ok){
+      throw new Error();
+    }
 
   }
 

@@ -3,11 +3,12 @@ const path = require("path");
 
 const db = new sqlite3.Database(path.join(__dirname, "../../app/RadioKanaler.db"));
 
-const getAllFavoriteProgramms = (req, res) => {
+const getFavoriteProgrammsById = (req, res) => {
 
-  let query = /*sql*/` SELECT * FROM favoriteList `;
-  
-  db.all(query, [], (err, list) => {
+  let query = /*sql*/` SELECT * FROM favoriteList WHERE userId = $userId `;
+  let params = { $userId: req.params.userId }
+
+  db.all(query, params, [], (err, list) => {
     if (list.length > 0) {
       console.log("Runs after the query");
       res.json(list);
@@ -55,7 +56,7 @@ const deleteProgramFromFavoriteList = (req, res) => {
 }
 
 module.exports = {
-  getAllFavoriteProgramms,
+  getFavoriteProgrammsById,
   addNewProgramm,
   deleteProgramFromFavoriteList,
 }

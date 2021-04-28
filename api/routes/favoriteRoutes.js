@@ -3,7 +3,7 @@ const router = express.Router();
 
 const favoriteController = require("../controllers/favoriteController");
 
-router.get("/", favoriteController.getAllFavoriteProgramms);
+router.get("/:userId", favoriteController.getFavoriteProgrammsById);
 router.post("/add-new-favorite-programm", favoriteController.addNewProgramm);
 router.delete("/favorite/:favoriteListId", favoriteController.deleteProgramFromFavoriteList);
 
