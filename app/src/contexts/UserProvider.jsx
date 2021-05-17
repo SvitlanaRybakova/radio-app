@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 export const UserContext = createContext();
@@ -10,6 +10,10 @@ const UserProvider = (props) => {
     email: "",
     password: ""
   };
+
+  useEffect(() => {
+    checkAuthorization()
+  },[])
 
   const [usersReg, setUserRegistration] = useState(initialUsers);
   const [usersLogin, setUserLogin] = useState(initialUsers);

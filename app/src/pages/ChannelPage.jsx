@@ -94,9 +94,7 @@ const ChannelPage = (props) => {
       <div className={style.container}>
         <div className={style.listContent}>
           <div className={style.cardWrapper}>
-            {/* <section className={style.list}> */}
             {render()}
-            {/* </section> */}
           </div>
         </div>
       </div>

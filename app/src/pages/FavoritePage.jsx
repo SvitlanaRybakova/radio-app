@@ -4,7 +4,7 @@ import style from "../styles/FavoritePage.module.css";
 import { UserContext } from "../contexts/UserProvider";
 
 
-const FavoritePage = (props) => {
+const FavoritePage = () => {
   const { isAuthorized, checkAuthorization } = useContext(UserContext);
   const { getFavoriteList, deleteProgram, list, isDelete, setDelete } = useContext(FavoriteContext);
 

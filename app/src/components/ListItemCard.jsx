@@ -1,11 +1,10 @@
 import { useHistory } from "react-router-dom";
 import styles from "../styles/ListItemCard.module.css";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { UserContext } from "../contexts/UserProvider";
 import { FavoriteContext } from "../contexts/FavoriteProvider";
 
-
 const ListItemCard = ({
-  isAuthorized,
   isChannel,
   id,
   image,
@@ -20,7 +19,8 @@ const ListItemCard = ({
 
   const { settingFavorite } = useContext(FavoriteContext);
   const history = useHistory();
-
+  const { isAuthorized } = useContext(UserContext);
+  
 
   const handleClick = (id) => {
     if (isChannel) {
@@ -81,7 +81,7 @@ const ListItemCard = ({
             <div className={styles.cardDetails}>
               <p className={ channeltype ? styles.channelTitle : styles.title }>{name}</p>
               {/* optional */}
-              {(startDate || endDate) ?
+              {(startDate || endDate)  && 
                 <div className={styles.detailsOptional}>
                   <span className={styles.date}>{startDate}</span>
                   <span className={styles.date} >-</span>
@@ -91,14 +91,11 @@ const ListItemCard = ({
                     <p>{description}</p>
                   </div>
                 </div>
-                : ""
               }
-              {description ?
+              {description &&
                 <div className={styles.detailsOptional}>
                   <p>{description}</p>
                 </div>
-                :
-                ""
               }
             </div>
 
