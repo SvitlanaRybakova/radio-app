@@ -47,6 +47,8 @@ const getChannelPrograms = async (req, res) => {
   programs = await programs.json()
 
   res.json(programs)
+
+  
 }
 
 module.exports = {

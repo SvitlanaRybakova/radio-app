@@ -42,10 +42,8 @@ const FavoritePage = () => {
                 <div className={style.cardDetails}>
                   <p className={style.title}>{program.name}</p>
 
-                  {program.description ?
+                  {program.description &&
                     <p>{program.description}</p>
-                    :
-                    ""
                   }
                 </div>
               </div>

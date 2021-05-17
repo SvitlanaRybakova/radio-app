@@ -15,6 +15,7 @@ const ChannelsProvider = (props) => {
   const [channels, setChannels] = useState(null);
   const [singleChannel, setSingleChannel] = useState(null);
   const [channelSchedule, setChannelSchedule] = useState(null);
+  const [allPrograms, setPrograms] = useState(null)
 
 
 
@@ -52,10 +53,10 @@ const ChannelsProvider = (props) => {
   }
  
   const getChannelPrograms = async (channelId) => {
-    let programs = await fetch(`/api/v1/allprograms/${channelId}`);
+    let programs = await fetch(`/api/v1/channels/allprograms/${channelId}`);
     programs = await programs.json();
     
-    return programs
+    setPrograms(programs.programs) 
   };
 
   const values = {
@@ -69,6 +70,7 @@ const ChannelsProvider = (props) => {
     getChannelSchedule,
     channelSchedule,
     getChannelPrograms,
+    allPrograms,
 
   }
   return (

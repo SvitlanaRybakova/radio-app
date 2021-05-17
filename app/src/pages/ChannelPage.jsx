@@ -12,9 +12,9 @@ import ListItemCard from "../components/ListItemCard";
 
 const ChannelPage = (props) => {
   const { isAuthorized, checkAuthorization } = useContext(UserContext);
-  const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, } = useContext(ChannelsContext)
+  const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, getChannelPrograms, allPrograms } = useContext(ChannelsContext)
   
-
+ 
 
   const { channelId } = props.match.params;
 
@@ -26,6 +26,7 @@ const ChannelPage = (props) => {
   useEffect(() => {
     getChannelById(channelId);
     getChannelSchedule(channelId);
+    getChannelPrograms(channelId)
   }, []);
 
   useEffect(() => {
@@ -34,7 +35,8 @@ const ChannelPage = (props) => {
 
 
   const render = () => {
-    if (singleChannel && channelSchedule) {
+    if (singleChannel && allPrograms) {
+    
       return (
         <>
           <h1 className={style.channelTitle}>{singleChannel.name}</h1>
@@ -65,17 +67,17 @@ const ChannelPage = (props) => {
           </div>
 
           <section className={style.schedule}>
-            <h2 className={style.scheduleHeader}>Idag kan du lyssna på följande program:</h2>
+            <h2 className={style.scheduleHeader}>Våra program:</h2>
 
 
-            {channelSchedule.map(elem => (
+            {allPrograms.map(elem => (
               <ListItemCard
                 key={(+new Date()).toString(32) + Math.random().toString(32).substring(2, 9)}
                 isAuthorized={isAuthorized}
                 isChannel={false}
                 elem={elem}
-                id={elem.program.id}
-                image={elem.imageurl}
+                id={elem.id}
+                image={elem.programimage}
                 name={elem.title}
                 startDate={new Date(elem.starttimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
                 endDate={new Date(elem.endtimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
