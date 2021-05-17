@@ -36,6 +36,7 @@ const ListItemCard = ({
 
   const clickAddFavorite = (e) => {
     e.stopPropagation();
+    console.log('click');
     settingFavorite(image, name, description, id, isAuthorized.userId);
     history.push("/favorite-list");
   }

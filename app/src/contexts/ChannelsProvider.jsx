@@ -51,7 +51,12 @@ const ChannelsProvider = (props) => {
     return schedule;
   }
  
-
+  const getChannelPrograms = async (channelId) => {
+    let programs = await fetch(`/api/v1/allprograms/${channelId}`);
+    programs = await programs.json();
+    
+    return programs
+  };
 
   const values = {
     channelCategories,
@@ -63,6 +68,7 @@ const ChannelsProvider = (props) => {
     getChannelById,
     getChannelSchedule,
     channelSchedule,
+    getChannelPrograms,
 
   }
   return (

@@ -9,15 +9,18 @@ import ListItemCard from "../components/ListItemCard";
 
 
 
+
 const ChannelPage = (props) => {
   const { isAuthorized, checkAuthorization } = useContext(UserContext);
   const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, } = useContext(ChannelsContext)
   
 
+
   const { channelId } = props.match.params;
 
   // custom hook for playing audio
   const { toggle, playing } = useAudio(singleChannel?.liveaudio.url);
+
 
 
   useEffect(() => {
@@ -32,7 +35,6 @@ const ChannelPage = (props) => {
 
   const render = () => {
     if (singleChannel && channelSchedule) {
-     
       return (
         <>
           <h1 className={style.channelTitle}>{singleChannel.name}</h1>
