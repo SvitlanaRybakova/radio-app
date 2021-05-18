@@ -21,7 +21,7 @@ const ProgramPage = (props) => {
 
   useEffect(() => {
     checkAuthorization();
-  }, [isAuthorized])
+  }, [])
 
 /*
 * getting a specific program from db  

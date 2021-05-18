@@ -16,7 +16,6 @@ const FavoritePage = () => {
     if (isAuthorized){
       getFavoriteList(isAuthorized.userId);
     }
-    
   }, [isAuthorized]);
 
   const handleClick = (id) => {

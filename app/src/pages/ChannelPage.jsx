@@ -8,7 +8,7 @@ import ListItemCard from "../components/ListItemCard";
 
 const ChannelPage = (props) => {
   const { isAuthorized, checkAuthorization } = useContext(UserContext);
-  const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, getChannelPrograms, allPrograms } = useContext(ChannelsContext)
+  const { singleChannel, getChannelById, getChannelPrograms, allPrograms } = useContext(ChannelsContext)
   
   const { channelId } = props.match.params;
 
@@ -17,13 +17,12 @@ const ChannelPage = (props) => {
 
   useEffect(() => {
     getChannelById(channelId);
-    getChannelSchedule(channelId);
     getChannelPrograms(channelId)
   }, []);
 
   useEffect(() => {
     checkAuthorization();
-  }, [isAuthorized])
+  }, [])
 
   const render = () => {
     if (singleChannel && allPrograms) {
