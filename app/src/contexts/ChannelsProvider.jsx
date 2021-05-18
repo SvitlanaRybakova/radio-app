@@ -26,7 +26,7 @@ const ChannelsProvider = (props) => {
 
   // different types of proxy:
 
-  /*
+/*
 * getting all channels from db
 */
   const getAllChannels = async () => {
