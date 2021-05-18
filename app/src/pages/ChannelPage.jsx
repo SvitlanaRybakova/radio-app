@@ -70,9 +70,7 @@ const ChannelPage = (props) => {
             <h2 className={style.scheduleHeader}>Våra program:</h2>
 
 
-            {allPrograms.map(elem => {
-console.log(elem)
-             return (
+            {allPrograms.map(elem => (
               <ListItemCard
                 key={(+new Date()).toString(32) + Math.random().toString(32).substring(2, 9)}
                 isAuthorized={isAuthorized}
@@ -85,7 +83,7 @@ console.log(elem)
                 // endDate={new Date(elem.endtimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
                 subtitle={elem.subtitle}
                 description={elem.description} />
-            )}
+            )
             )}
 
           </section>
