@@ -81,15 +81,14 @@ const UserProvider = (props) => {
       checkAuthorization();
       history.push("/");
     }
+    setUserLogin(initialUsers);
     return await response.json();
   }
 
   const logout = async () => {
     let response = await fetch("/api/v1/users/logout");
     response = await response.json();
-    if(!response.ok){
-      throw new Error()
-    }
+  
     await checkAuthorization()
   }
 
