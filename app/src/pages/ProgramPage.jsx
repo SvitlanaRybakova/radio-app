@@ -21,14 +21,26 @@ const ProgramPage = (props) => {
 
   useEffect(() => {
     checkAuthorization();
-  }, isAuthorized)
+  }, [])
 
+/*
+* getting a specific program from db  
+* @param { stirng } = program id
+*/
   const gettingProgramById = async (programId) => {
     let response = await getProgById(programId)
     setProgram(response)
   }
 
-
+/*
+* passing properties of a certain element to write it to the database
+* then move to favorite page  
+* @param { stirng } = item image
+* @param { stirng } = item name
+* @param { stirng } = item description
+* @param { stirng } = item id
+* @param { stirng } = user id
+*/
   const clickAddFavorite = (image, name, description, id, userId) => {
     settingFavorite(image, name, description, id, userId)
     history.push("/favorite-list");
@@ -39,7 +51,6 @@ const ProgramPage = (props) => {
       return (
         <>
           <div className={style.container}>
-
             <div className={style.titleWrapper}>
               <h1 className={style.ProgramTitle}>{program.name}</h1>
               {
@@ -50,60 +61,40 @@ const ProgramPage = (props) => {
                   :
                   "you should be authorized"
               }
-
-
-
-
             </div>
-
             <div className={style.flexWrapper}>
-
               <div className={style.imgWrapper}>
                 <img src={program.programimage} alt={program.name} />
               </div>
-
               <div className={style.mainContent}>
                 <p className={style.programDescription}>{program.description}</p>
                 <p className={style.programSlug}>{program.programslug}</p>
-
               </div>
-
             </div>
             {program.broadcastinfo ?
               <p className={style.broadcastItem}>{program.broadcastinfo}</p> : ""}
-
             {program.responsibleeditor ?
               <p className={style.programEditor}> <span style={{ color: '#ffc107' }}>Responsible editor:</span>  {program.responsibleeditor}</p> : ""}
-
             <div className={style.visitHomePage}>
               <i style={{ fontSize: "20px", color: "#ffc107" }}
                 className="far fa-hand-point-right"></i>
               <a className={style.linkToSite}
                 href={program.programurl}>Besök webbsidan</a>
             </div>
-
             <div className={style.broadcastinfo}>
-
-
               <div className="">
                 <i style={{ fontSize: "20px", display: "inline-block", color: "#ffc107" }} className="far fa-envelope"></i>
                 <a className={style.email} href={`mailto: ${program.email}`}>Skriv email till oss</a>
               </div>
-
             </div>
             {
-              program.phone ?
-                (<div className={style.phoneWrapper}>
+              program.phone &&
+                <div className={style.phoneWrapper}>
                   <i
                     style={{ fontSize: "20px", display: "inline-block", color: "#ffc107" }}
                     className="fas fa-phone-alt"></i>
                   <p className={style.phone}>{program.phone}</p>
-                </div>)
-                :
-                ''
-            }
-
-
+                </div>}
 
             {program.socialmediaplatforms.map((platform) => {
               if (platform.platform === "Facebook") {
@@ -118,8 +109,6 @@ const ProgramPage = (props) => {
                       {platform.platform}
                     </a>
                   </div>)
-
-
               } if (platform.platform === "Twitter") {
                 return (
                   <div
@@ -149,24 +138,19 @@ const ProgramPage = (props) => {
               } else {
                 return <></>;
               }
-
             })}
           </div>
         </>
       )
-
     }
     else {
       return (
         <Spinner />
       )
-
-
     }
-
   }
-  return (
 
+  return (
     <>
       <div className={style.wrapper}>
         <div className={style.container}>
@@ -175,7 +159,6 @@ const ProgramPage = (props) => {
           </div>
         </div>
       </div>
-
     </>
   )
 }

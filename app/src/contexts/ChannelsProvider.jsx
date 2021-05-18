@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 export const ChannelsContext = createContext();
 
 const ChannelsProvider = (props) => {
+  // API did not provide channel categories (need for filter), so created hardcode
   const [channelCategories] = useState([
     { id: 1, name: "All" },
     { id: 2, name: "Rikskanal" },
@@ -15,6 +16,7 @@ const ChannelsProvider = (props) => {
   const [channels, setChannels] = useState(null);
   const [singleChannel, setSingleChannel] = useState(null);
   const [channelSchedule, setChannelSchedule] = useState(null);
+  const [allPrograms, setPrograms] = useState(null)
 
 
 
@@ -22,21 +24,34 @@ const ChannelsProvider = (props) => {
     getAllChannels();
   }, []);
 
+  // different types of proxy:
+
+  /*
+* getting all channels from db
+*/
   const getAllChannels = async () => {
     let channels = await fetch("/api/v1/channels");
     channels = await channels.json();
     setChannels(channels.channels);
   }
 
+/*
+* getting a specific channel by id  from db
+* @param { string } = category id
+*/
   const getChannelById = async (channelId) => {
     let channel = await fetch(`/api/v1/channels/${channelId}`);
     channel = await channel.json();
     setSingleChannel(channel.channel);
-
   }
 
+/*
+* getting a schedule for the specific channel by id from db
+* @param { string } - channel id
+* @param { string } - piked date
+*/
   const getChannelSchedule = async (channelId, date) => {
-
+// if date === undefind, assign date to current date
     if (!date) {
       date = new Date().toLocaleDateString('sv-SE');
     }
@@ -51,7 +66,16 @@ const ChannelsProvider = (props) => {
     return schedule;
   }
  
-
+/*
+* getting programs for the specific channel by its id from db
+* @param { string } - channel id
+*/
+  const getChannelPrograms = async (channelId) => {
+    let programs = await fetch(`/api/v1/channels/allprograms/${channelId}`);
+    programs = await programs.json();
+    
+    setPrograms(programs.programs) 
+  };
 
   const values = {
     channelCategories,
@@ -63,6 +87,8 @@ const ChannelsProvider = (props) => {
     getChannelById,
     getChannelSchedule,
     channelSchedule,
+    getChannelPrograms,
+    allPrograms,
 
   }
   return (
