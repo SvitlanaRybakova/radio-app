@@ -17,6 +17,7 @@ const ListItemCard = ({
 
 }) => {
 
+  console.log('tityel', name, description);
   const { settingFavorite } = useContext(FavoriteContext);
   const history = useHistory();
   const { isAuthorized } = useContext(UserContext);

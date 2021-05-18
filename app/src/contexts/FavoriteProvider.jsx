@@ -8,6 +8,7 @@ const FavoriteProvider = (props) => {
 
   useEffect(() => {
     getFavoriteList();
+    console.log('useEffect from favorite provider');
   }, []);
 
   const getFavoriteList = async (userId) => {
@@ -17,7 +18,6 @@ const FavoriteProvider = (props) => {
       throw new Error(`An error has occured: ${response.status}`)
     } else {
       const list = await response.json();
-       console.log('from context', list);
       setList(list)
     }
   }
@@ -59,6 +59,7 @@ const FavoriteProvider = (props) => {
   }
 
   const settingFavorite = async ( image, name, description, id, userId) => {
+    console.log('click from favorite context');
     const program = {
       image,
       name,
@@ -66,8 +67,9 @@ const FavoriteProvider = (props) => {
       userId,
       favoriteListId: id
     }
+    console.log('program', program);
     let result = await addNewProgram(program);
-    console.log(result);
+    console.log('result', result);
   }
 
   const value = {

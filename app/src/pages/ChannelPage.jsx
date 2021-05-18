@@ -70,7 +70,9 @@ const ChannelPage = (props) => {
             <h2 className={style.scheduleHeader}>Våra program:</h2>
 
 
-            {allPrograms.map(elem => (
+            {allPrograms.map(elem => {
+console.log(elem)
+             return (
               <ListItemCard
                 key={(+new Date()).toString(32) + Math.random().toString(32).substring(2, 9)}
                 isAuthorized={isAuthorized}
@@ -78,12 +80,13 @@ const ChannelPage = (props) => {
                 elem={elem}
                 id={elem.id}
                 image={elem.programimage}
-                name={elem.title}
-                startDate={new Date(elem.starttimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
-                endDate={new Date(elem.endtimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
+                name={elem.name}
+                // startDate={new Date(elem.starttimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
+                // endDate={new Date(elem.endtimeutc).toLocaleTimeString('sv-SE').slice(0, 5)}
                 subtitle={elem.subtitle}
                 description={elem.description} />
-            ))}
+            )}
+            )}
 
           </section>
         </>
