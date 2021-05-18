@@ -4,24 +4,16 @@ import { ChannelsContext } from "../contexts/ChannelsProvider";
 import { UserContext } from "../contexts/UserProvider";
 import useAudio from "../hooks/useAudio";
 import Spinner from "../components/Spinner"
-
 import ListItemCard from "../components/ListItemCard";
-
-
-
 
 const ChannelPage = (props) => {
   const { isAuthorized, checkAuthorization } = useContext(UserContext);
   const { singleChannel, getChannelById, getChannelSchedule, channelSchedule, getChannelPrograms, allPrograms } = useContext(ChannelsContext)
   
- 
-
   const { channelId } = props.match.params;
 
   // custom hook for playing audio
   const { toggle, playing } = useAudio(singleChannel?.liveaudio.url);
-
-
 
   useEffect(() => {
     getChannelById(channelId);
@@ -31,12 +23,10 @@ const ChannelPage = (props) => {
 
   useEffect(() => {
     checkAuthorization();
-  }, isAuthorized)
-
+  }, [isAuthorized])
 
   const render = () => {
     if (singleChannel && allPrograms) {
-    
       return (
         <>
           <h1 className={style.channelTitle}>{singleChannel.name}</h1>
@@ -44,7 +34,6 @@ const ChannelPage = (props) => {
             <div className={style.imgWrapper}>
               <img src={singleChannel.image} alt={singleChannel.name} />
             </div>
-
             <div className={style.description}>
               <p>{singleChannel.tagline}</p>
               <div className={style.visitHomePage}>
@@ -54,9 +43,7 @@ const ChannelPage = (props) => {
               </div>
             </div>
           </div>
-
           <div className={style.audio} onClick={toggle}>
-
             {playing ?
               <i style={{ fontSize: "50px", position: "absolute", color: "#ffc107", }}
                 className="far fa-pause-circle"></i>
@@ -65,11 +52,8 @@ const ChannelPage = (props) => {
                 className="far fa-play-circle"></i>
             }
           </div>
-
           <section className={style.schedule}>
             <h2 className={style.scheduleHeader}>Våra program:</h2>
-
-
             {allPrograms.map(elem => (
               <ListItemCard
                 key={(+new Date()).toString(32) + Math.random().toString(32).substring(2, 9)}
@@ -85,7 +69,6 @@ const ChannelPage = (props) => {
                 description={elem.description} />
             )
             )}
-
           </section>
         </>
       )
@@ -104,7 +87,6 @@ const ChannelPage = (props) => {
         </div>
       </div>
     </div>
-
   )
 }
 export default ChannelPage;

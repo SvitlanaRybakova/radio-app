@@ -4,7 +4,8 @@ import styles from "../styles/RegistrationPage.module.css";
 
 
 const RegistrationPage = () => {
-  const { usersReg,
+  const { 
+    usersReg,
     handleRegistration,
     userRegistration,
     usersLogin,
@@ -12,14 +13,11 @@ const RegistrationPage = () => {
     handleLogin,
   } = useContext(UserContext);
 
-
-
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <div className={styles.listContent}>
-
             <div className={styles.registrationWrapper}>
               <div className={styles.registration}>
                 <h1 className={styles.title}>Registration</h1>
@@ -32,7 +30,6 @@ const RegistrationPage = () => {
                     type="text"
                     name="userName"
                     id="" />
-
                   <label htmlFor="email">email</label>
                   <input
                     className={styles.input}
@@ -41,7 +38,6 @@ const RegistrationPage = () => {
                     type="text"
                     name="email"
                     id="" />
-
                   <label htmlFor="passwordR">password</label>
                   <input
                     className={styles.input}
@@ -51,8 +47,8 @@ const RegistrationPage = () => {
                     name="password" />
                   <button className={styles.btn}>Register</button>
                 </form>
-
               </div>
+
               <h2 className={styles.title}>Login</h2>
               <form action="POST" onSubmit={(e) => checkLogin(e)}>
                 <label htmlFor="username">username</label>
@@ -63,7 +59,6 @@ const RegistrationPage = () => {
                   type="text"
                   name="userName"
                   id="" />
-
                 <label htmlFor="email">email</label>
                 <input
                   className={styles.input}
@@ -72,7 +67,6 @@ const RegistrationPage = () => {
                   type="text"
                   name="email"
                   id="" />
-
                 <label htmlFor="passwordR">password</label>
                 <input
                   className={styles.input}
@@ -82,7 +76,6 @@ const RegistrationPage = () => {
                   name="password" />
                 <button className={styles.btn}>Login</button>
               </form>
-
             </div>
           </div>
         </div>

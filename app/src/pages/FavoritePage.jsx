@@ -4,7 +4,7 @@ import style from "../styles/FavoritePage.module.css";
 import { UserContext } from "../contexts/UserProvider";
 
 const FavoritePage = () => {
-  const { isAuthorized, checkAuthorization } = useContext(UserContext);
+  const { isAuthorized } = useContext(UserContext);
   const {
     getFavoriteList,
     deleteProgram,
@@ -65,7 +65,7 @@ const FavoritePage = () => {
         </div>
       ));
     } else {
-     return <h2 className={style.warning}>Lägg till din favoritprogram...</h2>;
+     return <h2 className={style.warning}>Lägg till din favoritprogram eller favoritkanal...</h2>;
     }
   };
 
@@ -76,7 +76,7 @@ const FavoritePage = () => {
         <div className={style.container}>
           <div className={style.listContent}>
             <div className={style.cardWrapper}>
-              <h1 className={style.headerTitle}>Favoritlista</h1>
+              <h1 className={style.headerTitle}>Favoritlista <br/> (kanaler och program)</h1>
               {isAuthorized ? (
                 renderList()
               ) : (

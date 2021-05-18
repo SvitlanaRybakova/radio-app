@@ -19,20 +19,17 @@ const UserProvider = (props) => {
   const [usersLogin, setUserLogin] = useState(initialUsers);
   const [isAuthorized, setAuthorized] = useState(null)
 
-  
 
   const handleRegistration = (e) => {
     const { name, value } = e.target;
     setUserRegistration({ ...usersReg, [name]: value })
-
-
   }
 
   const handleLogin = (e) => {
     const { name, value } = e.target;
     setUserLogin({ ...usersLogin, [name]: value })
-
   }
+
 
   const checkAuthorization = async () => {
     let response = await fetch("/api/v1/users/whoami");
@@ -42,7 +39,6 @@ const UserProvider = (props) => {
 
   const userRegistration = async (e) => {
     e.preventDefault();
-    console.log(usersReg);
     let response = await fetch("/api/v1/users/register", {
       method: "POST",
       credentials: 'same-origin',
@@ -57,8 +53,8 @@ const UserProvider = (props) => {
       alert("Congrats, you have been registered")
     }
     setUserRegistration(initialUsers)
-    return await response.json();
-
+    const res = await response.json()
+    return res;
   }
 
   const checkLogin = async (e) => {

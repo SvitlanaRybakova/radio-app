@@ -1,5 +1,6 @@
 import  { useState, useEffect } from "react";
 
+// example of a custom hook that would be able to call functionality anywhere in the program 
 const useAudio = url => {
   const [audio] = useState(new Audio(url));
   const [playing, setPlaying] = useState(false);
@@ -15,16 +16,9 @@ const useAudio = url => {
   );
 
   const toggle = () =>{
-    console.log('inside hook');
     setPlaying(!playing);
   }
 
-  // useEffect(() => {
-  //   audio.addEventListener('ended', () => setPlaying(false));
-  //   return () => {
-  //     audio.removeEventListener('ended', () => setPlaying(false));
-  //   };
-  // }, []);
 
   return {playing, toggle}
 }

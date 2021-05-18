@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { ChannelsContext } from "../contexts/ChannelsProvider";
 import { ProgramsContext } from "../contexts/ProgramsProvider";
-
 import style from "../styles/HomePage.module.css";
 import Spinner from "../components/Spinner";
 import ListItemCard from "../components/ListItemCard";
@@ -29,6 +28,10 @@ const HomePage = () => {
     render();
   }, []);
 
+/*
+* finding programs by program type/category (filter implementation)
+* @param { number } = category id
+*/
   const gettingPrograms = async (programType) => {
     let response;
     if (programType == 0) {
@@ -40,18 +43,8 @@ const HomePage = () => {
   };
 
   const renderChannels = () => {
-    // const test ={
-    //   name: {
-    //     id: 1,
-    //     name: "Olga"
-    //   }
-    // }
-
-    // console.log(test.name.name);
-
     if (channels) {
       let filteredChannels;
-
       if (channeltype !== "All") {
         filteredChannels = channels.filter((channel) => {
           return channel.channeltype === channeltype;
@@ -60,7 +53,6 @@ const HomePage = () => {
         // Go for All
         filteredChannels = channels;
       }
-
       return filteredChannels.map((channel) => (
         <ListItemCard
           key={channel.id}
@@ -81,7 +73,6 @@ const HomePage = () => {
   const renderPrograms = () => {
     if (programs) {
       return programs.map((program) =>{
-      
       return (
           <ListItemCard
             key={program.id}
@@ -91,13 +82,14 @@ const HomePage = () => {
             description={program.description}
           />
         )
-       } 
+      } 
       );
     } else {
       <Spinner />;
     }
   };
 
+  // deciding what to render the list of channels and programs
   const render = () => {
     return isChannels ? renderChannels() : renderPrograms();
   };
@@ -125,7 +117,6 @@ const HomePage = () => {
           >
             Kanaler
           </div>
-
           <div
             className={
               isChannels
@@ -137,7 +128,6 @@ const HomePage = () => {
             Program
           </div>
         </section>
-
         {/* filter */}
         <form className={style.filter} action="">
           <ul className={style.cboxtags}>
@@ -159,7 +149,6 @@ const HomePage = () => {
           </ul>
         </form>
         {/* filter end */}
-
         <div className={style.listContent}>
           <div className={style.cardWrapper}>{render()}</div>
         </div>

@@ -6,7 +6,6 @@ import { FavoriteContext } from "../contexts/FavoriteProvider";
 
 const ListItemCard = ({
   isChannel,
-  programType,
   id,
   image,
   name,
@@ -97,7 +96,6 @@ const ListItemCard = ({
             )}
              {/* type or heart */}
             {renderBtnType()}
-
             {/* end type or heart */}
           </div>
         </div>

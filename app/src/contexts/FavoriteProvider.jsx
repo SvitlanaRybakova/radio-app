@@ -8,11 +8,15 @@ const FavoriteProvider = (props) => {
 
   useEffect(() => {
     getFavoriteList();
-    console.log('useEffect from favorite provider');
   }, []);
 
-  const getFavoriteList = async (userId) => {
+
   
+/*
+* getting all programs/channels  as list from db 
+* @param { string } - user id
+*/
+  const getFavoriteList = async (userId) => {
     let response = await fetch(`/api/v1/favorite-list/${userId}`);
     if (!response.ok) {
       throw new Error(`An error has occured: ${response.status}`)
@@ -22,8 +26,12 @@ const FavoriteProvider = (props) => {
     }
   }
 
-  const addNewProgram = async (newProgram) => {
 
+/*
+* add new program/channel  to db 
+* @param { object } - a program/channel properties 
+*/
+  const addNewProgram = async (newProgram) => {
     let result = await fetch("/api/v1/favorite-list/add-new-favorite-programm", {
       method: "POST",
       headers: {
@@ -32,13 +40,14 @@ const FavoriteProvider = (props) => {
       body: JSON.stringify(newProgram),
     });
     result = await result.json();
-
     await getFavoriteList();
-
-    return result;
+    // return result;
   };
 
-
+/*
+* delete program/channel  from db 
+* @param { string } - a program/channel id
+*/
   const deleteProgram = async (favoriteListId) => {
     let result = await fetch(`/api/v1/favorite-list/favorite/${favoriteListId}`, {
       method: "DELETE",
@@ -50,16 +59,17 @@ const FavoriteProvider = (props) => {
       throw new Error();
     }
     result = await result.json();
-    console.log("inside deleteProgram", result);
   
+    // update array with items for rendering
     setList(list.filter((item) => {
       return favoriteListId !== item.favoriteListId
     }))
     
   }
 
+  // create a new object with the required properties for db
   const settingFavorite = async ( image, name, description, id, userId) => {
-    console.log('click from favorite context');
+    
     const program = {
       image,
       name,
@@ -67,9 +77,7 @@ const FavoriteProvider = (props) => {
       userId,
       favoriteListId: id
     }
-    console.log('program', program);
-    let result = await addNewProgram(program);
-    console.log('result', result);
+    await addNewProgram(program);
   }
 
   const value = {
